@@ -1,0 +1,19 @@
+{
+  "unity": "6000.6.7f1",
+  "date": "2026-11-02",
+  "source": "current Unity working tree; captured in separate temporary copy",
+  "hashes": {
+    "Assets/_Project/Data/BunnyTuning.asset": "642ac6c5dd20df9b101a1fd71dabd7bfe790929bb6b6152307208029c188d11e",
+    "ProjectSettings/Physics2DSettings.asset": "d57a0fe55659c33879e8b70bc01c5ea9cdf082069dab649905c6c5138531e6eb",
+    "Assets/_Project/Scripts/Runtime/Bunny/BunnyRig.cs": "0e678163e91f5b4cfd60ff3b7d8bfb87f150c1cd25f0c24b5e33572d6d513581",
+    "Assets/_Project/Scripts/Runtime/Bunny/BunnyMotor.cs": "9eb6c838086583a49108fad8a2723428ce9cd43722524d73e45aa2f0e8db91e2",
+    "Assets/_Project/Scripts/Runtime/Bunny/BunnyGrab.cs": "9d30ce775e1c7acbeb5dd50de524f37694459bd35bd1052fdd94c67831880f6a",
+    "Assets/_Project/Scripts/Runtime/Bunny/BunnyLife.cs": "56f3c362d557e913ab43871d460997b778c24a8cb2f29aa1cb9e80fc95df8d6a",
+    "Assets/_Project/Scripts/Runtime/Match/DeathmatchController.cs": "fbf6c8467918ef11c31327c8d52aa0fca0797ccdbf85c607251f05125e847b85",
+    "Assets/_Project/Scenes/PhysicsLab.unity": "4043fae91bdd66bad4be37ff2d9f69dcfd6be0b33b74618bcacbbf3e6da79f6b",
+    "Assets/_Project/Scenes/DM_Flat.unity": "7b8474241feca9487d506bb1d3f61ddd211f3c9304557f34c817a1cb016c4b3f",
+    "Assets/_Project/Scenes/DM_Meadow.unity": "fa0f7632065636af7a646f3acca7b3261fb74ed5d54e2365d7b7d726f7690191"
+  },
+  "scenarios": "150 ticks each; flat idle, jump at tick 30, roll from tick 20, lab idle; no model changes to physical rig",
+  "testResult": "1 passed, 0 failed; original Unity source untouched"
+}

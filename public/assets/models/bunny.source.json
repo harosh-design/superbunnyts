@@ -1,0 +1,63 @@
+{
+  "source": "Super Bunny/ArtSource/bunny_rigged.blend",
+  "sourceSha256": "bcc426b67d38cb44dfdb874877f00c539aa66b2f38590a0c1d4797c50843e69e",
+  "assetSha256": "09168c94dc9c6bbdaf179e5f83a6fe36ae0c924a35c85a886dee949200b578d2",
+  "coordinates": "glTF Y up; authored front +Z; metres; profile yaw +65 degrees",
+  "bones": [
+    "Belly",
+    "Ear1.L",
+    "Ear1.R",
+    "Ear2.L",
+    "Ear2.R",
+    "Foot.L",
+    "Foot.R",
+    "Forearm.L",
+    "Forearm.R",
+    "Head",
+    "Mitten.L",
+    "Mitten.R",
+    "Root",
+    "Shin.L",
+    "Shin.R",
+    "Spine",
+    "Tail",
+    "Thigh.L",
+    "Thigh.R",
+    "UpperArm.L",
+    "UpperArm.R"
+  ],
+  "meshes": {
+    "EarPanels": 862,
+    "Face": 2913,
+    "FaceDead": 2913,
+    "Suit": 6292,
+    "Tail": 314
+  },
+  "materials": {
+    "Face": [
+      0.9331068396568298,
+      0.7874122858047485,
+      0.5382355451583862,
+      1.0
+    ],
+    "FaceDead": [
+      0.9331068396568298,
+      0.7874122858047485,
+      0.5382355451583862,
+      1.0
+    ],
+    "Suit": [
+      0.9331068396568298,
+      0.24286681413650513,
+      0.6038273572921753,
+      1.0
+    ],
+    "White": [
+      0.911407470703125,
+      0.911407470703125,
+      0.911407470703125,
+      1.0
+    ]
+  },
+  "note": "Original geometry, normals, skin and face texture; no decimation. FaceDead included for deathmatch."
+}

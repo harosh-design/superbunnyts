@@ -1,0 +1,83 @@
+{
+  "source": "Super Bunny/ArtSource/sumo_rigged.blend",
+  "sourceSha256": "6b659d46ca6236ddb1f7a3e5b70b94bef898ecbaec0201b0bddee6f6967add5a",
+  "assetSha256": "8a6ef3d4658b81ad0e5cafa23481abd209b172fb91af69bdde170adca064f702",
+  "coordinates": "glTF Y up; authored front +Z; metres; profile yaw +65 degrees",
+  "bones": [
+    "Belly",
+    "Foot.L",
+    "Foot.R",
+    "Forearm.L",
+    "Forearm.R",
+    "Head",
+    "Mitten.L",
+    "Mitten.R",
+    "Root",
+    "Shin.L",
+    "Shin.R",
+    "Spine",
+    "Thigh.L",
+    "Thigh.R",
+    "UpperArm.L",
+    "UpperArm.R"
+  ],
+  "meshes": {
+    "BodyDetails": 1220,
+    "Face": 5776,
+    "FaceDead": 200,
+    "HeadDetails": 9150,
+    "MawashiFold": 1450,
+    "SumoSkin": 23614
+  },
+  "materials": {
+    "BrownEyes": [
+      0.07828831672668457,
+      0.01960664801299572,
+      0.005981059744954109,
+      1.0
+    ],
+    "HairTie": [
+      0.015325203537940979,
+      0.007850573398172855,
+      0.00854038167744875,
+      1.0
+    ],
+    "Smile": [
+      0.027211781591176987,
+      0.004400849808007479,
+      0.0027089782524853945,
+      1.0
+    ],
+    "Suit_Mawashi": [
+      0.7874122858047485,
+      0.0300741046667099,
+      0.015325203537940979,
+      1.0
+    ],
+    "SumoHair": [
+      0.004400849808007479,
+      0.0030185759533196688,
+      0.0035010159481316805,
+      1.0
+    ],
+    "SumoSkin": [
+      0.8900054097175598,
+      0.3931231200695038,
+      0.23302200436592102,
+      1.0
+    ],
+    "TeethAndEyes": [
+      0.9774019122123718,
+      0.911407470703125,
+      0.7677687406539917,
+      1.0
+    ],
+    "WarmDetails": [
+      0.6038273572921753,
+      0.13286831974983215,
+      0.06372379511594772,
+      1.0
+    ]
+  },
+  "note": "Original geometry, normals, skin and face texture; no decimation. FaceDead included for deathmatch."
+}
