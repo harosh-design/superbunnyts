@@ -1,3 +1,4 @@
+import { placeStomp } from './geometryHelpers';
 import { describe, expect, it } from 'vitest';
 import { Circle } from 'planck';
 import { PhysicsLab } from '../../src/world/PhysicsLab';
@@ -23,8 +24,7 @@ function stomp(speed: number, health = 100) {
   const lab = new PhysicsLab('dm-flat'); advance(lab, 160);
   const attacker = lab.players[0].actor, victim = lab.players[1].actor;
   move(victim, 0, 3); victim.health = health;
-  const head = victim.rig.core.getWorldPoint({ x: -0.02, y: 0.34 });
-  move(attacker, head.x - 0.04, head.y + 0.155 + 0.055 + 0.39 - 0.003);
+  placeStomp(attacker,victim);
   for (const body of attacker.rig.bodies) body.setLinearVelocity({ x: 0, y: -speed });
   advance(lab, 3);
   return { lab, victim, attacker };
@@ -47,6 +47,9 @@ describe('head impact health', () => {
     for (const result of [slow, medium, fast]) {
       expect(result.attacker.health).toBe(100); expect(result.lab.players[1].lives).toBe(10);
       expect(result.victim.lastHeadHits.size).toBe(1);
+      expect(result.victim.damageHits).toHaveLength(1);
+      expect(result.victim.damageHits[0].amount).toBeCloseTo(100 - result.victim.health);
+      expect(result.attacker.lastStrike?.cause).toBe('kick');
     }
   });
 
@@ -58,15 +61,13 @@ describe('head impact health', () => {
   it('counts both feet as one blow, prevents contact drain, and allows another distinct blow', () => {
     const { lab, victim, attacker } = stomp(6);
     const remaining = victim.health;
-    const head = victim.rig.core.getWorldPoint({ x: -0.02, y: 0.34 });
-    move(attacker, head.x - 0.04, head.y + 0.155 + 0.055 + 0.39 - 0.003);
+    placeStomp(attacker,victim);
     for (const body of attacker.rig.bodies) body.setLinearVelocity({ x: 0, y: -6 });
     advance(lab, 3);
     expect(victim.health).toBe(remaining);
     // Separate the fighters for longer than the hit cooldown, then strike again.
     move(attacker, -4, 4); move(victim, 0, 3); advance(lab, 20);
-    const nextHead = victim.rig.core.getWorldPoint({ x: -0.02, y: 0.34 });
-    move(attacker, nextHead.x - 0.04, nextHead.y + 0.155 + 0.055 + 0.39 - 0.003);
+    placeStomp(attacker,victim);
     for (const body of attacker.rig.bodies) body.setLinearVelocity({ x: 0, y: -8 });
     advance(lab, 3);
     expect(victim.health).toBeLessThan(remaining); expect(victim.alive).toBe(true);
@@ -76,7 +77,7 @@ describe('head impact health', () => {
     const { lab, victim } = stomp(8, 5);
     expect(victim.health).toBe(0); expect(victim.alive).toBe(false); expect(victim.cause).toBe('kick');
     expect(lab.players[1].lives).toBe(9); expect(lab.players[0].kills).toBe(1);
-    advance(lab, 77);
+    advance(lab, Math.ceil(MATCH_RULES.respawnDelay / .02) + 2);
     expect(lab.players[1].actor.id).not.toBe(victim.id);
     expect(lab.players[1].actor.health).toBe(MATCH_RULES.maxHealth);
   });

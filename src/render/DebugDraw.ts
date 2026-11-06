@@ -7,13 +7,21 @@ export class DebugDraw {
   private readonly lines = new THREE.LineSegments(new THREE.BufferGeometry(), new THREE.LineBasicMaterial({ color: '#f5ed87', depthTest: false, transparent: true, opacity: 0.9 }));
   constructor() { this.root.add(this.lines); this.root.visible = false; this.lines.renderOrder = 10; }
 
-  update(lab: PhysicsLab): void {
+  update(lab: PhysicsLab, alpha = 1): void {
     if (!this.root.visible) return;
     const vertices: number[] = [];
     const line = (a: Vec2Value, b: Vec2Value) => vertices.push(a.x, a.y, 0.6, b.x, b.y, 0.6);
     const cross = (p: Vec2Value, r: number) => { line({ x: p.x - r, y: p.y }, { x: p.x + r, y: p.y }); line({ x: p.x, y: p.y - r }, { x: p.x, y: p.y + r }); };
+    const actorBodies=new Set(lab.actors.flatMap(a=>a.rig.bodies));
+    for(const actor of lab.actors) {
+      if(!actor.alive)continue;
+      const p=actor.previous,c=actor.current;
+      const lerp=(a:typeof p.core,b:typeof p.core)=>({x:a.x+(b.x-a.x)*alpha,y:a.y+(b.y-a.y)*alpha,angle:a.angle+(b.angle-a.angle)*alpha});
+      const pose={core:lerp(p.core,c.core),arms:c.arms.map((b,i)=>lerp(p.arms[i],b)),legs:c.legs.map((b,i)=>lerp(p.legs[i],b)),objects:[]};
+      for(const outline of actor.rig.skin.renderOutlines(pose,alpha))for(let i=0;i<outline.length;i++)line(outline[i],outline[(i+1)%outline.length]);
+    }
     for (let body = lab.world.getBodyList(); body; body = body.getNext()) {
-      if (!body.isActive()) continue;
+      if (!body.isActive()||actorBodies.has(body)) continue;
       for (let fixture = body.getFixtureList(); fixture; fixture = fixture.getNext()) {
         const shape = fixture.getShape();
         if (shape instanceof Circle) {

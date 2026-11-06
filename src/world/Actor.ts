@@ -20,6 +20,9 @@ export class Actor {
   alive = true;
   health: number = MATCH_RULES.maxHealth;
   lastHurtAt = -Infinity;
+  lastStrike: { at: number; cause: 'head' | 'kick'; direction: Vec2 } | null = null;
+  hitSerial = 0;
+  readonly damageHits: { id: number; at: number; amount: number; x: number; y: number }[] = [];
   readonly lastHeadHits = new Map<number, number>();
   diedAt = -Infinity;
   removed = false;
@@ -27,7 +30,7 @@ export class Actor {
   current: BunnyPose;
   previous: BunnyPose;
   constructor(world: World, readonly environment: Environment, readonly id: number, readonly player: number, spawn: Vec2, facing: number, readonly model: ModelKind = 'bunny') {
-    this.rig = new BunnyRig(world, spawn, id, facing, environment.surfaces, model === 'bunny');
+    this.rig = new BunnyRig(world, spawn, id, facing, environment.surfaces, model);
     this.grab = new BunnyGrab(world, this.rig, environment.surfaces);
     this.motor = new BunnyMotor(this.rig, this.grab);
     this.current = this.previous = this.capture();

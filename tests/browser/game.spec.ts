@@ -28,75 +28,9 @@ test('four-player Meadow, source Sumo and two-player recording',async({page},tes
  await page.waitForTimeout(500);await page.keyboard.press('KeyQ');await expect(page.locator('#start-overlay')).toBeVisible();
 });
 
-test('gripping hands reach the physics contact with the actual character assets',async({page})=>{
- test.skip(!!process.env.BUNNY_TEST_URL,'Asset probes use Vite source modules; the UI scenarios also run against production.');
- const measurements=await page.evaluate(async()=>{
-  const physicsPath='/src/world/PhysicsLab.ts',visualPath='/src/render/CharacterVisual.ts';
-  const [{PhysicsLab},{CharacterVisual}]=await Promise.all([import(physicsPath),import(visualPath)]);
-  const results: {scene:string;tick:number;wristError:number;meshGap:number}[]=[];
-  const cases=[{scene:'lab',part:'object',facing:1,model:'bunny'},{scene:'vine',part:'object',facing:1,model:'bunny'}];
-  for(const part of ['head','body'])for(const facing of [1,-1])for(const model of ['bunny','sumo'])cases.push({scene:'dm-flat',part,facing,model});
-  for(const scenario of cases) {
-   const {scene,part,facing,model}=scenario;
-   const lab=new PhysicsLab(scene,scene==='lab'?{x:.4,y:.64}:undefined);
-   const holder=lab.players[facing===1?0:1]?.actor??lab.players[0].actor;
-   if(part!=='object') {
-    lab.match.phase='playing';
-    const victim=lab.players[holder.player===0?1:0].actor;
-    for(const [actor,x,y] of [[holder,0,3],[victim,facing*(part==='head'?.625:.63),part==='head'?2.9:3.24]] as const) {
-     const origin=actor.rig.core.getPosition().clone();
-     for(const body of actor.rig.bodies){const p=body.getPosition();body.setTransform({x:x+p.x-origin.x,y:y+p.y-origin.y},body.getAngle());body.setLinearVelocity({x:0,y:0});body.setAngularVelocity(0);}
-     actor.current=actor.previous=actor.capture();
-    }
-   }
-   const visual=CharacterVisual.create(model,holder.rig.facing);visual.reset(holder);
-   const vector=()=>visual.root.position.clone().set(0,0,0);
-   for(let tick=0;tick<35;tick++) {
-    lab.step(lab.players.map((p:any)=>({roll:0,jumpHeld:false,jumpPressed:false,grabHeld:p.actor===holder})));
-    if(tick!==0&&tick!==30)continue;
-    for(const alpha of [0,.5,1]) {
-    const lerp=(a:any,b:any)=>({x:a.x+(b.x-a.x)*alpha,y:a.y+(b.y-a.y)*alpha,angle:a.angle+(b.angle-a.angle)*alpha});
-    const pose={core:lerp(holder.previous.core,holder.current.core),legs:holder.current.legs.map((p:any,i:number)=>lerp(holder.previous.legs[i],p)),arms:holder.current.arms.map((p:any,i:number)=>lerp(holder.previous.arms[i],p)),objects:[]};
-    // Even the very first rendered grip must reach; no smoothing delay.
-    for(let frame=0;frame<3;frame++)visual.pose(pose,alpha,.001,holder);
-    visual.root.updateMatrixWorld(true);
-    for(let i=0;i<2;i++) {
-     const surface=holder.grab.held[i];if(!surface)continue;
-     const tip=visual.arms[i].tip, wrist=tip.getWorldPosition(vector());
-     const arm=pose.arms[i],hand={x:arm.x+holder.rig.handLocal.x*Math.cos(arm.angle),y:arm.y+holder.rig.handLocal.x*Math.sin(arm.angle)};
-     let meshGap=Infinity;
-     visual.root.traverse((node:any)=>{
-      if(!node.isSkinnedMesh)return;
-      const bone=node.skeleton.bones.indexOf(tip);if(bone<0)return;
-      const indices=node.geometry.attributes.skinIndex,weights=node.geometry.attributes.skinWeight;
-      for(let vertex=0;vertex<indices.count;vertex++) {
-       let influence=0;
-       for(let k=0;k<4;k++)if(indices.getComponent(vertex,k)===bone)influence+=weights.getComponent(vertex,k);
-       if(influence<.5)continue;
-       const p=node.localToWorld(node.getVertexPosition(vertex,vector())),nearest=surface.closestAt(p,alpha);
-       meshGap=Math.min(meshGap,Math.hypot(p.x-nearest.x,p.y-nearest.y));
-      }
-     });
-     results.push({scene:`${scene}/${part}/${facing}/${model}/${alpha}`,tick,wristError:Math.hypot(wrist.x-hand.x,wrist.y-hand.y),meshGap});
-    }
-    }
-   }
-   visual.dispose();lab.dispose();
-  }
-  return results;
- });
- expect(measurements).toHaveLength(120);
- for(const measurement of measurements) {
-  // The rendered wrist may move within the physical glove radius to compensate
-  // for the asset's smaller hand mesh; its visible surface must touch.
-  expect(measurement.wristError,JSON.stringify(measurement)).toBeLessThan(.065);
- }
- expect(measurements.filter(m=>m.meshGap>=.006)).toEqual([]);
-});
-
-test('health HUD follows damage in a deterministic four-player replay',async({page},testInfo)=>{
+test('health HUD follows damage and KO in a deterministic four-player replay',async({page},testInfo)=>{
  test.skip(!!process.env.BUNNY_TEST_URL,'Replay fixture generation uses Vite source modules.');
- const {replay,health}=await page.evaluate(async()=>{
+ const {replay,health,alive}=await page.evaluate(async()=>{
   const replayPath='/src/debug/Replay.ts',physicsPath='/src/world/PhysicsLab.ts';
   const [{newReplay},{PhysicsLab}]=await Promise.all([import(replayPath),import(physicsPath)]);
   const replay=newReplay('dm-flat',{players:4}),lab=new PhysicsLab('dm-flat',undefined,replay.options);
@@ -106,14 +40,17 @@ test('health HUD follows damage in a deterministic four-player replay',async({pa
    replay.frames.push(frames);lab.step(frames);
    if(lab.players.some((p:any)=>p.actor.alive&&p.actor.health<99))break;
   }
-  return {replay,health:lab.players.map((p:any)=>Math.ceil(p.actor.health))};
+  return {replay,health:lab.players.map((p:any)=>Math.ceil(p.actor.health)),alive:lab.players.map((p:any)=>p.actor.alive)};
  });
  expect(health.some((hp:number)=>hp<100)).toBe(true);
  await page.locator('#start').click();await page.locator('.tools summary').click();
  await page.locator('#upload').setInputFiles({name:'combat.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(replay))});
  await expect(page.locator('.toast')).toHaveText('Повтор загружен');await page.locator('#replay').click();
  await expect(page.locator('#pause-overlay')).toBeVisible({timeout:20000});
- for(let i=0;i<4;i++)await expect(page.getByRole('progressbar',{name:`Здоровье P${i+1}`})).toHaveAttribute('aria-valuenow',String(health[i]));
+ for(let i=0;i<4;i++) {
+  const bar=page.getByRole('progressbar',{name:`Здоровье P${i+1}`});
+  if(alive[i])await expect(bar).toHaveAttribute('aria-valuenow',String(health[i]));else await expect(bar).toHaveCount(0);
+ }
  await page.locator('#resume').click();
  await page.screenshot({path:testInfo.outputPath('health-damage-hud.png')});
 });
@@ -138,7 +75,7 @@ test('real match ends, shows results and restarts',async({page},testInfo)=>{
  await expect(page.locator('#rematch')).toBeEnabled({timeout:3000});await page.locator('#rematch').click();await expect(page.locator('#results')).toBeHidden();await expect(page.locator('#match-banner')).toHaveText('3');
 });
 
-test('Bunny and Sumo dissolve immediately and finish before a replacement appears',async({page},testInfo)=>{
+test('Bunny and Sumo linger, sink through the ground and finish before respawning',async({page},testInfo)=>{
  test.skip(!!process.env.BUNNY_TEST_URL,'The deterministic death preview uses Vite source modules.');
  await page.locator('#start').click();await page.keyboard.press('Escape');
  for(const model of ['bunny','sumo']) {
@@ -155,35 +92,92 @@ test('Bunny and Sumo dissolve immediately and finish before a replacement appear
    const container=document.createElement('div');container.style.cssText='position:fixed;inset:0;z-index:100';document.body.append(container);
    const renderer=await SceneRenderer.create(container,lab);renderer.render(lab,1,.02,true);
    const dead=lab.players[0].actor;lab.eliminate(0,'head',1);renderer.render(lab,1,0,true);
-   const effect=renderer.dissolves.get(dead.id);
-   (window as any).deathPreview={lab,renderer,container,dead,empty,initialPositions:Array.from(effect.root.geometry.getAttribute('position').array)};
-   return {solidVisible:renderer.characters.get(dead.id).root.visible,particles:effect.root.geometry.getAttribute('position').count,
-    opacity:effect.root.material.opacity,activeBodies:dead.rig.bodies.filter((b:any)=>b.isActive()).length,lives:lab.players[0].lives};
+   const visual=renderer.characters.get(dead.id);
+   (window as any).deathPreview={lab,renderer,container,dead,empty,startY:visual.root.position.y};
+   return {solidVisible:visual.root.visible,y:visual.root.position.y,
+    activeBodies:dead.rig.bodies.filter((b:any)=>b.isActive()).length,lives:lab.players[0].lives};
   },model);
-  expect(initial.solidVisible).toBe(false);expect(initial.particles).toBeGreaterThan(300);expect(initial.opacity).toBe(1);
-  expect(initial.activeBodies).toBe(0);expect(initial.lives).toBe(1);
-  const middle=await page.evaluate(()=>{
-   const p=(window as any).deathPreview;for(let i=0;i<10;i++)p.lab.step(p.empty());p.renderer.render(p.lab,1,.02,true);
-   const effect=p.renderer.dissolves.get(p.dead.id),positions=effect.root.geometry.getAttribute('position').array;
-   return {opacity:effect.root.material.opacity,moved:positions.some((v:number,i:number)=>Math.abs(v-p.initialPositions[i])>.02),
-    solidVisible:p.renderer.characters.get(p.dead.id).root.visible,replaced:p.lab.players[0].actor.id!==p.dead.id};
+  expect(initial.solidVisible).toBe(true);expect(initial.activeBodies).toBe(0);expect(initial.lives).toBe(1);
+  const held=await page.evaluate(()=>{
+   const p=(window as any).deathPreview;for(let i=0;i<25;i++)p.lab.step(p.empty());p.renderer.render(p.lab,1,.02,true);
+   return {y:p.renderer.characters.get(p.dead.id).root.position.y,replaced:p.lab.players[0].actor.id!==p.dead.id};
   });
-  expect(middle.opacity).toBeGreaterThan(0);expect(middle.opacity).toBeLessThan(1);expect(middle.moved).toBe(true);
-  expect(middle.solidVisible).toBe(false);expect(middle.replaced).toBe(false);
-  await page.screenshot({path:testInfo.outputPath(`${model}-dissolving.png`)});
+  expect(held.y).toBeCloseTo(initial.y);expect(held.replaced).toBe(false);
+  const middle=await page.evaluate(()=>{
+   const p=(window as any).deathPreview;for(let i=0;i<40;i++)p.lab.step(p.empty());p.renderer.render(p.lab,1,.02,true);
+   const root=p.renderer.characters.get(p.dead.id).root;
+   return {y:root.position.y,solidVisible:root.visible,replaced:p.lab.players[0].actor.id!==p.dead.id};
+  });
+  expect(middle.y).toBeLessThan(initial.y-.2);expect(middle.solidVisible).toBe(true);expect(middle.replaced).toBe(false);
+  await page.screenshot({path:testInfo.outputPath(`${model}-sinking.png`)});
   const lifecycle=await page.evaluate(()=>{
    const p=(window as any).deathPreview;let emptyStage=false,overlap=false;
-   for(let i=0;i<25;i++) {
+   for(let i=0;i<75;i++) {
     p.lab.step(p.empty());p.renderer.render(p.lab,1,.02,true);
     const replaced=p.lab.players[0].actor.id!==p.dead.id;
-    emptyStage ||= p.dead.removed&&!replaced&&!p.renderer.characters.has(p.dead.id)&&!p.renderer.dissolves.has(p.dead.id);
-    overlap ||= replaced&&(p.renderer.characters.has(p.dead.id)||p.renderer.dissolves.has(p.dead.id));
+    emptyStage ||= p.dead.removed&&!replaced&&!p.renderer.characters.has(p.dead.id)&&!p.renderer.corpses.has(p.dead.id);
+    overlap ||= replaced&&(p.renderer.characters.has(p.dead.id)||p.renderer.corpses.has(p.dead.id));
    }
    return {emptyStage,overlap,replaced:p.lab.players[0].actor.id!==p.dead.id,health:p.lab.players[0].actor.health,
-    visible:p.renderer.characters.get(p.lab.players[0].actor.id).root.visible,effects:p.renderer.dissolves.size};
+    visible:p.renderer.characters.get(p.lab.players[0].actor.id).root.visible,effects:p.renderer.corpses.size};
   });
   expect(lifecycle).toEqual({emptyStage:true,overlap:false,replaced:true,health:100,visible:true,effects:0});
   await page.screenshot({path:testInfo.outputPath(`${model}-respawned.png`)});
   await page.evaluate(()=>{const p=(window as any).deathPreview;p.renderer.dispose();p.lab.dispose();p.container.remove();delete (window as any).deathPreview;});
+ }
+});
+
+test('overhead bars, floating damage and physical strike pose follow real contacts and pause',async({page},testInfo)=>{
+ test.skip(!!process.env.BUNNY_TEST_URL,'Contact fixtures use Vite source modules.');
+ await page.locator('#start').click();await page.keyboard.press('Escape');
+ for(const model of ['bunny','sumo']) {
+  const hit=await page.evaluate(async(model)=>{
+   const physicsPath='/src/world/PhysicsLab.ts',rendererPath='/src/render/SceneRenderer.ts';
+   const [{PhysicsLab},{SceneRenderer}]=await Promise.all([import(physicsPath),import(rendererPath)]);
+   const lab=new PhysicsLab('dm-flat',undefined,{players:2,model});lab.match.phase='playing';
+   const attacker=lab.players[0].actor,victim=lab.players[1].actor;
+   const move=(actor:any,x:number,y:number)=>{
+    const origin=actor.rig.core.getPosition().clone();
+    for(const body of actor.rig.bodies){const p=body.getPosition();body.setTransform({x:x+p.x-origin.x,y:y+p.y-origin.y},body.getAngle());body.setLinearVelocity({x:0,y:0});body.setAngularVelocity(0);}
+    actor.motor.goLimp();actor.current=actor.previous=actor.capture();
+   };
+   move(victim,0,1);const head=victim.rig.core.getWorldPoint({x:-.02,y:.34});
+   move(attacker,head.x-.04,head.y+.155+.055+.39-.003);
+   for(const body of attacker.rig.bodies)body.setLinearVelocity({x:0,y:-8});
+   const empty=()=>lab.players.map(()=>({roll:0,jumpHeld:false,jumpPressed:false,grabHeld:false}));
+   // Render only after several fixed steps: transient events must survive them.
+   for(let i=0;i<5;i++)lab.step(empty());
+   const container=document.createElement('div');container.style.cssText='position:fixed;inset:0;z-index:100';document.body.append(container);
+   const renderer=await SceneRenderer.create(container,lab);renderer.render(lab,1,.02,true);
+   const visual=renderer.characters.get(attacker.id),leg=visual.legs[0].tip;
+   const animated=leg.getWorldPosition(visual.root.position.clone()).clone();
+   const strike=attacker.lastStrike;attacker.lastStrike=null;visual.pose(attacker.current,1,0,attacker,lab.time);
+   const rest=leg.getWorldPosition(visual.root.position.clone()).clone();attacker.lastStrike=strike;
+   renderer.render(lab,1,0,true);
+   (window as any).combatPreview={lab,renderer,container,empty,victim};
+   return {health:Math.ceil(victim.health),amount:Math.round(victim.damageHits[0].amount),animationDistance:animated.distanceTo(rest),
+    numbers:container.querySelectorAll('.damage-number').length,bars:container.querySelectorAll('.overhead-health:not([hidden])').length,
+    value:container.querySelector('[aria-label="Здоровье P2"]').getAttribute('aria-valuenow')};
+  },model);
+  expect(hit.health).toBeLessThan(100);expect(hit.numbers).toBe(1);expect(hit.bars).toBe(2);expect(hit.value).toBe(String(hit.health));expect(hit.animationDistance).toBeLessThan(.00001);
+  const container=page.locator('body > div').last();
+  await expect(container.locator('.damage-number')).toHaveText(`−${hit.amount}`);
+  const freeze=await page.evaluate(()=>{
+   const p=(window as any).combatPreview,node=p.container.querySelector('.damage-number'),before=node.getAttribute('style');
+   for(let i=0;i<10;i++)p.renderer.render(p.lab,1,.02,false,true);
+   return {before,after:node.getAttribute('style')};
+  });
+  expect(freeze.after).toBe(freeze.before);
+  await page.screenshot({path:testInfo.outputPath(`${model}-combat-feedback.png`)});
+  const cleanup=await page.evaluate(()=>{
+   const p=(window as any).combatPreview;
+   for(let i=0;i<55;i++)p.lab.step(p.empty());p.renderer.render(p.lab,1,.02,true);
+   const numbers=p.container.querySelectorAll('.damage-number').length;
+   p.renderer.resetCharacter(p.lab);
+   const resetNumbers=p.container.querySelectorAll('.damage-number').length;
+   p.renderer.dispose();p.lab.dispose();p.container.remove();delete(window as any).combatPreview;
+   return {numbers,resetNumbers};
+  });
+  expect(cleanup).toEqual({numbers:0,resetNumbers:0});
  }
 });

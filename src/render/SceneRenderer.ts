@@ -5,7 +5,8 @@ import { WorldVisual, disposeObjects, type Scenery } from './WorldVisual';
 import { LabCamera } from './LabCamera';
 import { PLAYER_COLORS } from '../world/Actor';
 import { DebugDraw } from './DebugDraw';
-import { DeathDissolve } from './DeathDissolve';
+import { DeathSink } from './DeathSink';
+import { CombatOverlay } from './CombatOverlay';
 import { tuning } from '../config/bunnyTuning';
 
 export class SceneRenderer {
@@ -14,7 +15,8 @@ export class SceneRenderer {
   private readonly scene = new THREE.Scene();
   private readonly camera = new THREE.PerspectiveCamera(30, 1, 0.1, 300);
   private readonly characters = new Map<number, CharacterVisual>();
-  private readonly dissolves = new Map<number, DeathDissolve>();
+  private readonly corpses = new Map<number, DeathSink>();
+  private readonly combat: CombatOverlay;
   private world!: WorldVisual;
   private scenery!: Record<string, Scenery>;
   private sky!: THREE.Texture;
@@ -47,6 +49,8 @@ export class SceneRenderer {
     this.renderer.shadowMap.enabled = true; this.renderer.shadowMap.type = THREE.PCFShadowMap;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping; this.renderer.toneMappingExposure = 1.1;
     container.append(this.canvas);
+    this.combat = new CombatOverlay(container);
+    this.renderer.localClippingEnabled = true;
     this.scene.background = new THREE.Color('#abdafa');
     this.scene.add(new THREE.HemisphereLight('#bfd9ff', '#736b59', 1.8));
     const light = new THREE.DirectionalLight('#fff9e8', 3.2);
@@ -57,7 +61,7 @@ export class SceneRenderer {
   }
 
   resetCharacter(lab: PhysicsLab): void {
-    this.dissolves.forEach(effect => effect.dispose()); this.dissolves.clear();
+    this.corpses.clear(); this.combat.reset();
     if (this.world) { this.scene.remove(this.world.root); disposeObjects(this.world.root); }
     this.characters.forEach(c => c.dispose()); this.characters.clear();
     this.world = new WorldVisual(lab, this.scenery[lab.scene.startsWith('dm-') ? lab.scene : 'physics-lab'], this.sky); this.scene.add(this.world.root);
@@ -65,7 +69,7 @@ export class SceneRenderer {
   }
   private syncActors(lab: PhysicsLab): void {
     for (const [id, visual] of this.characters) if (!lab.actors.some(a => a.id === id)) {
-      visual.dispose(); this.characters.delete(id); this.dissolves.get(id)?.dispose(); this.dissolves.delete(id);
+      visual.dispose(); this.characters.delete(id); this.corpses.delete(id);
     }
     for (const actor of lab.actors) if (!this.characters.has(actor.id)) {
       const color = lab.match || lab.options.menu ? PLAYER_COLORS[actor.player] : undefined;
@@ -84,28 +88,33 @@ export class SceneRenderer {
       arms: current.arms.map((b, i) => interpolate(previous.arms[i], b, alpha))
     };
     this.syncActors(lab);
+    const time = lab.time - (1 - alpha) * tuning.dt;
     for (const actor of lab.actors) {
       const visual = this.characters.get(actor.id)!;
       if (!actor.alive) {
-        if (!this.dissolves.has(actor.id)) {
-          visual.pose(actor.current, 1, 0, actor);
-          const effect = new DeathDissolve(visual.root); this.scene.add(effect.root); this.dissolves.set(actor.id, effect);
-          visual.root.visible = false;
+        if (!this.corpses.has(actor.id)) {
+          visual.pose(actor.current, 1, 0, actor, actor.diedAt);
+          // Clip at the supporting scenery so a corpse cannot show through the
+          // underside of a thin Meadow platform while sinking.
+          const ray = new THREE.Raycaster(new THREE.Vector3(actor.current.core.x, actor.current.core.y, 0), new THREE.Vector3(0, -1, 0));
+          const support = ray.intersectObject(this.world.root, true).find(hit => ['Grass', 'Dirt'].includes(hit.object.name));
+          this.corpses.set(actor.id, new DeathSink(visual.root, support?.point.y ?? actor.current.core.y - 0.65));
         }
-        this.dissolves.get(actor.id)!.update(Math.max(0, lab.time - actor.diedAt - (1 - alpha) * tuning.dt));
+        this.corpses.get(actor.id)!.update(Math.max(0, time - actor.diedAt));
         continue;
       }
       const p = actor.previous, c = actor.current;
-      visual.pose({ core: interpolate(p.core, c.core, alpha), legs: c.legs.map((b, i) => interpolate(p.legs[i], b, alpha)), arms: c.arms.map((b, i) => interpolate(p.arms[i], b, alpha)), objects: [] }, alpha, paused ? 0 : delta, actor);
+      visual.pose({ core: interpolate(p.core, c.core, alpha), legs: c.legs.map((b, i) => interpolate(p.legs[i], b, alpha)), arms: c.arms.map((b, i) => interpolate(p.arms[i], b, alpha)), objects: [] }, alpha, paused ? 0 : delta, actor, time);
     }
-    this.world.update(pose.objects); this.debug.update(lab);
+    this.world.update(pose.objects); this.debug.update(lab,alpha);
     this.framing.update(this.camera, lab, Math.min(delta, 0.16), snap);
+    this.combat.update(lab, this.camera, this.characters, time, this.canvas.clientWidth, this.canvas.clientHeight);
     this.renderer.render(this.scene, this.camera);
   }
 
   dispose(): void {
     this.resizeObserver.disconnect();
-    this.dissolves.forEach(effect => effect.dispose()); this.dissolves.clear();
+    this.corpses.clear(); this.combat.reset();
     const textures = new Set<THREE.Texture>();
     this.scene.traverse(node => {
       if (node instanceof THREE.Mesh) for (const material of Array.isArray(node.material) ? node.material : [node.material]) {
@@ -113,7 +122,7 @@ export class SceneRenderer {
       }
     });
     disposeObjects(this.scene); textures.forEach(t => t.dispose()); this.sky?.dispose();
-    this.renderer.dispose(); this.canvas.remove();
+    this.combat.dispose(); this.renderer.dispose(); this.canvas.remove();
   }
 
   private resize(): void {

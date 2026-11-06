@@ -1,7 +1,7 @@
 import type { Actor } from './Actor';
 
 export const MATCH_RULES = {
-  lives: 10, respawnDelay: 0.6, deathDissolveDuration: 0.45, countdown: 3, resultsLockout: 1.5,
+  lives: 10, respawnDelay: 2.7, deathHoldDuration: 0.65, deathSinkDuration: 1.8, corpseDuration: 2.45, countdown: 3, resultsLockout: 1.5,
   maxHealth: 100, minHeadImpactSpeed: 2, damagePerJoule: 2, headHitCooldown: 0.25
 } as const;
 

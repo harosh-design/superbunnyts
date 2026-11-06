@@ -100,10 +100,6 @@ select { font: inherit; color: #e6ecf3; border: 1px solid #ffffff30; border-radi
 .player-badge b { color: var(--player-color); font-size: 12px; }
 .player-badge strong { font: 600 18px ui-monospace, monospace; }
 .player-badge span { grid-column: 1 / -1; font-size: 9px; color: #bfcedf; }
-.player-badge .health-row { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 12px; margin-top: 3px; }
-.health-row .health-value { color: #fff; font-variant-numeric: tabular-nums; }
-.health-bar { grid-column: 1 / -1; height: 6px; overflow: hidden; background: #ffffff20; border-radius: 3px; margin-bottom: 3px; }
-.health-bar > div { height: 100%; background: var(--player-color); }
 .player-badge.hurt { border-color: #fff; background: #653545ed; }
 .match-banner { position: absolute; top: 30%; left: 0; right: 0; text-align: center; font-size: clamp(50px, 9vw, 110px); font-weight: 800; text-shadow: 0 4px 20px #10192870; }
 .results { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: auto; width: min(400px, calc(100% - 40px)); text-align: center; background: #1c293af5; border: 1px solid #ffffff30; border-radius: 18px; padding: 30px; }
@@ -114,3 +110,15 @@ select { font: inherit; color: #e6ecf3; border: 1px solid #ffffff30; border-radi
 @media(max-width:650px) { .start-card { padding: 25px; max-height: calc(100% - 30px); overflow-y: auto; } .scoreboard { left: 20px; top: 130px; max-width: calc(100% - 40px); gap: 5px; } .player-badge { min-width: 75px; padding: 6px 8px; } .tools { top: 225px; } }
 .match-control { font-size: 10px; line-height: 1.6; color: #c4cfdd; white-space: nowrap; }
 .match-control b { margin-right: 5px; }
+
+/* World-anchored combat feedback stays readable as the camera zooms. */
+.combat-overlay { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.overhead-health { position: absolute; width: 64px; padding-bottom: 8px; transform-origin: bottom center; }
+.overhead-player { display: block; margin-bottom: 3px; color: var(--player-color); text-align: center; font: 800 10px system-ui, sans-serif; text-shadow: 0 1px 3px #000, 0 0 4px #000; }
+.overhead-track { height: 7px; padding: 1px; overflow: hidden; border: 1px solid #141d2bee; border-radius: 5px; background: #182232dd; box-shadow: 0 1px 4px #0006; }
+.overhead-track i { display: block; height: 100%; border-radius: 3px; background: var(--player-color); }
+.overhead-health.is-low .overhead-track i { background: #ff5149; }
+.overhead-health.is-hurt .overhead-track { border-color: #fff; box-shadow: 0 0 8px #ffb16b; }
+.damage-number { position: absolute; color: #fff5ce; font: 900 23px system-ui, sans-serif; line-height: 1; white-space: nowrap; -webkit-text-stroke: 1px #562314; paint-order: stroke fill; text-shadow: 0 2px 0 #562314, 0 3px 7px #0009; transform-origin: center bottom; }
+.damage-number.heavy-hit { color: #ffb653; font-size: 29px; }
+.damage-number i { position: absolute; left: 50%; top: 100%; width: 38px; height: 38px; background: #fff0b0; clip-path: polygon(50% 0, 59% 32%, 88% 12%, 68% 41%, 100% 50%, 68% 59%, 88% 88%, 59% 68%, 50% 100%, 41% 68%, 12% 88%, 32% 59%, 0 50%, 32% 41%, 12% 12%, 41% 32%); z-index: -1; }

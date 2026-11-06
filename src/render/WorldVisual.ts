@@ -34,7 +34,7 @@ export class WorldVisual {
       const group = new THREE.Group();
       this.objects.push(group); this.root.add(group);
       const shape = object.surface.shape;
-      if (object.style === 'floor' || shape.kind === 'circle') return;
+      if (object.style === 'floor' || shape.kind === 'circle' || shape.kind === 'polygon') return;
       const width = shape.width, height = shape.height;
       const colors = { floor: '#73ad46', block: '#8b9c91', bag: '#b81f1a', chain: '#b8c4cc', vine: '#4d8c40', crate: '#bd8150', pad: '#e61a1f' };
       const drawnWidth = object.style === 'chain' ? 0.07 : width;

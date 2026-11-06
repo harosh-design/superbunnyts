@@ -9,7 +9,7 @@ import { Deathmatch, headImpactDamage, MATCH_RULES, type MatchOptions, type Play
 
 export interface Pose { x: number; y: number; angle: number }
 export interface BunnyPose { core: Pose; legs: Pose[]; arms: Pose[]; objects: Pose[] }
-export type VisualContext = Pick<Actor, 'rig' | 'grab' | 'contacts' | 'lastImpact' | 'current' | 'environment' | 'alive'>;
+export type VisualContext = Pick<Actor, 'rig' | 'grab' | 'contacts' | 'lastImpact' | 'current' | 'environment' | 'alive' | 'lastStrike' | 'lastHurtAt'>;
 interface PendingDeath { cause: DeathCause; killer?: Actor }
 interface HeadHit { victim: Actor; attacker: Actor; damage: number; cause: 'head' | 'kick' }
 export class PhysicsLab {
@@ -62,6 +62,7 @@ export class PhysicsLab {
     this.previous = this.current;
     for (const actor of this.actors) actor.previous = actor.current;
     this.environment.surfaces.capturePrevious();
+    this.actors.forEach(a=>a.rig.skin.capturePrevious());
     for (const spring of this.environment.springs) {
       if (stepSpring(this.environment, this.actors.filter(a => a.alive).map(a => a.rig), this.time, spring)) this.events.spring = true;
     }
@@ -74,6 +75,11 @@ export class PhysicsLab {
       this.events.jumped ||= actor.motor.jumpedThisStep; this.events.jumps += Number(actor.motor.jumpedThisStep); this.events.grabbed += actor.grab.grabbedThisStep;
     }
     this.world.step(tuning.dt, tuning.velocityIterations, tuning.positionIterations); this.ticks++;
+    for (const actor of this.actors) if (actor.alive) actor.rig.skin.sync();
+    for(let pass=0;pass<2;pass++) {
+      const moved=new Set(this.actors.filter(a=>a.alive).flatMap(a=>[...a.grab.projectContacts()]));
+      for(const actor of this.actors)if(actor.alive&&actor.rig.bodies.some(b=>moved.has(b)))actor.rig.skin.sync();
+    }
     this.actors.forEach(a => { a.contacts.feet.fill(false); a.contacts.hands.fill(false); });
     const touching = new Set<string>();
     for (let c = this.world.getContactList(); c; c = c.getNext()) {
@@ -88,8 +94,9 @@ export class PhysicsLab {
         if (fixture.isSensor() || other.isSensor()) continue;
         const i = data.part === 'arm-0' || data.part === 'leg-0' ? 0 : 1;
         const hand = data.part?.startsWith('arm');
-        if (!hand || !actor.grab.holding(i)) actor.motor.contact(this.time, !!data.part?.startsWith('leg'));
-        if (data.part?.startsWith('leg')) {
+        const foot=!!data.part?.startsWith('leg')&&!!role?.startsWith('Foot');
+        if (!hand || !actor.grab.holding(i)) actor.motor.contact(this.time, foot);
+        if (foot) {
           actor.contacts.feet[i] = true;
         }
         if (hand) actor.contacts.hands[i] = true;
@@ -189,7 +196,13 @@ export class PhysicsLab {
     for (const hit of this.headHits.values()) {
       const { victim, attacker, damage, cause } = hit;
       if (!victim.alive || this.pending.has(victim)) continue;
+      const amount = Math.min(victim.health, damage);
       victim.health = Math.max(0, victim.health - damage);
+      const from = attacker.rig.core.getPosition(), to = victim.rig.core.getPosition();
+      const length = Math.hypot(to.x - from.x, to.y - from.y) || 1;
+      attacker.lastStrike = { at: this.time, cause, direction: { x: (to.x - from.x) / length, y: (to.y - from.y) / length } };
+      victim.damageHits.push({ id: ++victim.hitSerial, at: this.time, amount, x: to.x, y: to.y + 0.5 });
+      if (victim.damageHits.length > 8) victim.damageHits.shift();
       victim.lastHurtAt = this.time; victim.lastHeadHits.set(attacker.id, this.time);
       this.events.hits.push(hit);
       if (victim.health === 0) this.queueKill(victim, { cause, killer: attacker });
@@ -225,7 +238,7 @@ export class PhysicsLab {
     const match = this.match; if (!match) return;
     // Always finish removing the old model before allowing a replacement,
     // including when a step crosses both deadlines or the match has ended.
-    for (const actor of [...this.actors]) if (!actor.alive && this.time - actor.diedAt >= MATCH_RULES.deathDissolveDuration) this.removeActor(actor);
+    for (const actor of [...this.actors]) if (!actor.alive && this.time - actor.diedAt >= MATCH_RULES.corpseDuration) this.removeActor(actor);
     if (match.phase === 'countdown') {
       const left = Math.max(0, Math.ceil(MATCH_RULES.countdown - this.time));
       if (left !== match.lastCountdown) { match.lastCountdown = left; this.events.countdown = left; }

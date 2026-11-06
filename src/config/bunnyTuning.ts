@@ -13,9 +13,11 @@ export const tuning = {
   gravity: { x: 0, y: -7.8 },
   dt: 0.02, // 50 физических тактов/секунду
   velocityIterations: 50,
-  positionIterations: 3,
+  positionIterations: 6, // articulated skin contacts and two simultaneous grips
 
-  // §7: тела персонажа
+  // §7: массы, моторы и исходная расстановка тел.
+  // Старые размеры примитивов ниже сохраняют калибровку масс/спавна;
+  // реальные коллайдеры строятся из characterGeometry.json, отдельно для каждой модели.
   core: {
     mass: 6,
     coreCenter: { x: 0, y: 0.53 },
@@ -58,7 +60,7 @@ export const tuning = {
 
   // §8: моторика
   roll: {
-    onSurface: 30, // Н·м
+    onSurface: 50, // Н·м: overcome the leverage of the complete mesh silhouette
     inAir: 14
   },
   maxSpinDeg: 420, // ограничение угловой скорости Core перед solve

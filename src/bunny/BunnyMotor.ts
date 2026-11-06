@@ -41,14 +41,14 @@ export class BunnyMotor {
     if (input.jumpPressed && this.grounded(now) && now - this.lastJump >= tuning.jump.minInterval) this.jump(now);
 
     const mode = now < this.legsExtendUntil ? tuning.legMotor.extend
-      : !this.grounded(now) ? tuning.legMotor.fold : tuning.legMotor.stand;
+      : input.roll || !this.grounded(now) ? tuning.legMotor.fold : tuning.legMotor.stand;
     for (const joint of this.rig.legJoints) {
       joint.setMaxMotorForce(mode.maxForce);
       joint.setMotorSpeed(clamp(tuning.legMotor.gain * (mode.target - joint.getJointTranslation()), mode.speedLimit));
     }
 
     const arm = tuning.armMotor;
-    const target = this.grounded(now) && now >= this.armsRelaxUntil ? 1 : 0;
+    const target = this.grounded(now) && !input.roll && now >= this.armsRelaxUntil ? 1 : 0;
     this.armStrength += (target - this.armStrength) * (1 - Math.exp(-arm.strengthRate * tuning.dt));
     const gain = arm.freeGainMin + (arm.freeGainMax - arm.freeGainMin) * this.armStrength;
     const torque = arm.freeTorqueMin + (arm.freeTorqueMax - arm.freeTorqueMin) * this.armStrength;

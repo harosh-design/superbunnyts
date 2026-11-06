@@ -1,0 +1,57 @@
+{
+  "stats": {
+    "startTime": "2026-11-06T20:46:48.600Z",
+    "duration": 55711.156,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "name": "actual GLB contours follow every physical body in both profiles and asymmetric poses",
+      "status": "expected",
+      "durationMs": 1607
+    },
+    {
+      "name": "fallen Bunny and Sumo skins rest on the floor with no invisible support gap",
+      "status": "expected",
+      "durationMs": 5798
+    },
+    {
+      "name": "player grips touch the visible opponent in XY and Z, including the first frame",
+      "status": "expected",
+      "durationMs": 4448
+    },
+    {
+      "name": "four-player Meadow, source Sumo and two-player recording",
+      "status": "expected",
+      "durationMs": 6211
+    },
+    {
+      "name": "health HUD follows damage and KO in a deterministic four-player replay",
+      "status": "expected",
+      "durationMs": 15879
+    },
+    {
+      "name": "vine grips, pause/reset, debug draw and narrow viewport",
+      "status": "expected",
+      "durationMs": 2459
+    },
+    {
+      "name": "real match ends, shows results and restarts",
+      "status": "expected",
+      "durationMs": 14934
+    },
+    {
+      "name": "Bunny and Sumo linger, sink through the ground and finish before respawning",
+      "status": "expected",
+      "durationMs": 1866
+    },
+    {
+      "name": "overhead bars, floating damage and physical strike pose follow real contacts and pause",
+      "status": "expected",
+      "durationMs": 1743
+    }
+  ]
+}

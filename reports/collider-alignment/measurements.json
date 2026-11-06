@@ -1,0 +1,4424 @@
+{
+  "geometry-measurements": [
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "torso",
+      "geometryError": 0.00017052950375928688,
+      "fixtureError": 0.00017052950375928688
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Ear1.L",
+      "geometryError": 0.00022008871059120416,
+      "fixtureError": 0.00022008871059120416
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Ear2.L",
+      "geometryError": 0.0003359203960004997,
+      "fixtureError": 0.0003359203960004997
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Ear1.R",
+      "geometryError": 0.0002918883395692795,
+      "fixtureError": 0.0002918883395692795
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Ear2.R",
+      "geometryError": 9.695082524896481e-05,
+      "fixtureError": 9.695082524896481e-05
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Thigh.R",
+      "geometryError": 2.1016244566379738e-05,
+      "fixtureError": 2.1016244566379738e-05
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Shin.R",
+      "geometryError": 0.00011271223898878802,
+      "fixtureError": 0.00011271223898878802
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Forearm.R",
+      "geometryError": 0.00042748995818708835,
+      "fixtureError": 0.00042748995818708835
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "UpperArm.R",
+      "geometryError": 0.0004931792610998187,
+      "fixtureError": 0.0004931792610998187
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Thigh.L",
+      "geometryError": 4.743681505381403e-07,
+      "fixtureError": 4.743681505381403e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Shin.L",
+      "geometryError": 0.00012847822831130173,
+      "fixtureError": 0.00012847822831130173
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "UpperArm.L",
+      "geometryError": 0.0006680231847551177,
+      "fixtureError": 0.0006680231847551177
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Head",
+      "geometryError": 0.0003158035630843048,
+      "fixtureError": 0.0003158035630843048
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Forearm.L",
+      "geometryError": 0.0004730422076639762,
+      "fixtureError": 0.0004730422076639762
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Foot.R",
+      "geometryError": 0.00022131504144945469,
+      "fixtureError": 0.00022131504144945469
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Foot.L",
+      "geometryError": 4.210076668176299e-05,
+      "fixtureError": 4.210076668176299e-05
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Mitten.R",
+      "geometryError": 6.053660239757619e-07,
+      "fixtureError": 6.053660239757619e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Mitten.L",
+      "geometryError": 5.019894748770071e-07,
+      "fixtureError": 5.019894748770071e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0,
+      "name": "Tail",
+      "geometryError": 3.5568766781901573e-07,
+      "fixtureError": 3.5568766781901573e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "torso",
+      "geometryError": 4.762127185253817e-05,
+      "fixtureError": 4.762127185253817e-05
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Ear1.L",
+      "geometryError": 0.00019502977692609225,
+      "fixtureError": 0.00019502977692609225
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Ear2.L",
+      "geometryError": 0.00032095733056225484,
+      "fixtureError": 0.00032095733056225484
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Ear1.R",
+      "geometryError": 0.0004534872476202878,
+      "fixtureError": 0.0004534872476202878
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Ear2.R",
+      "geometryError": 9.536139485244455e-05,
+      "fixtureError": 9.536139485244455e-05
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Thigh.R",
+      "geometryError": 1.4440444129126817e-05,
+      "fixtureError": 1.4440444129126817e-05
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Shin.R",
+      "geometryError": 0.00012756676392733368,
+      "fixtureError": 0.00012756676392733368
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Forearm.R",
+      "geometryError": 0.00042083799544601064,
+      "fixtureError": 0.00042083799544601064
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "UpperArm.R",
+      "geometryError": 0.0004903140430933539,
+      "fixtureError": 0.0004903140430933539
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Thigh.L",
+      "geometryError": 5.051669205169418e-07,
+      "fixtureError": 5.051669205169418e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Shin.L",
+      "geometryError": 0.00012133640587741468,
+      "fixtureError": 0.00012133640587741468
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "UpperArm.L",
+      "geometryError": 0.0006619506342100401,
+      "fixtureError": 0.0006619506342100401
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Head",
+      "geometryError": 0.00042923108765946516,
+      "fixtureError": 0.00042923108765946516
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Forearm.L",
+      "geometryError": 0.0004630894450357026,
+      "fixtureError": 0.0004630894450357026
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Foot.R",
+      "geometryError": 0.0010014478427970985,
+      "fixtureError": 0.0010014478427970985
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Foot.L",
+      "geometryError": 0.00014983615486885427,
+      "fixtureError": 0.00014983615486885427
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Mitten.R",
+      "geometryError": 6.103241410038152e-07,
+      "fixtureError": 6.103241410038152e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Mitten.L",
+      "geometryError": 4.981685950422587e-07,
+      "fixtureError": 4.981685950422587e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Tail",
+      "geometryError": 3.5556999855579363e-07,
+      "fixtureError": 3.5556999855579363e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "torso",
+      "geometryError": 0.00011164881890968203,
+      "fixtureError": 0.00011164881890968203
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Ear1.L",
+      "geometryError": 0.00022019384206295456,
+      "fixtureError": 0.00022019384206295456
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Ear2.L",
+      "geometryError": 0.0003359203960004997,
+      "fixtureError": 0.0003359203960004997
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Ear1.R",
+      "geometryError": 0.00029188833956939053,
+      "fixtureError": 0.00029188833956939053
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Ear2.R",
+      "geometryError": 9.699969518051077e-05,
+      "fixtureError": 9.699969518051077e-05
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Thigh.R",
+      "geometryError": 3.0418769267903656e-06,
+      "fixtureError": 3.0418769267903656e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Shin.R",
+      "geometryError": 0.00016866084254241187,
+      "fixtureError": 0.00016866084254241187
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Forearm.R",
+      "geometryError": 0.00042753119380833926,
+      "fixtureError": 0.00042753119380833926
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "UpperArm.R",
+      "geometryError": 0.0004932511062634148,
+      "fixtureError": 0.0004932511062634148
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Thigh.L",
+      "geometryError": 5.845040005336699e-07,
+      "fixtureError": 5.845040005336699e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Shin.L",
+      "geometryError": 0.0001438170461844912,
+      "fixtureError": 0.0001438170461844912
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "UpperArm.L",
+      "geometryError": 0.0006679624179057875,
+      "fixtureError": 0.0006679624179057875
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Head",
+      "geometryError": 0.00031580356308458235,
+      "fixtureError": 0.00031580356308458235
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Forearm.L",
+      "geometryError": 0.0004730319313610565,
+      "fixtureError": 0.0004730319313610565
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Foot.R",
+      "geometryError": 0.00014822794756230717,
+      "fixtureError": 0.00014822794756230717
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Foot.L",
+      "geometryError": 4.210076668215157e-05,
+      "fixtureError": 4.210076668215157e-05
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Mitten.R",
+      "geometryError": 6.248576835954367e-07,
+      "fixtureError": 6.248576835954367e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Mitten.L",
+      "geometryError": 5.131998830343321e-07,
+      "fixtureError": 5.131998830343321e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Tail",
+      "geometryError": 3.556876682075938e-07,
+      "fixtureError": 3.556876682075938e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "torso",
+      "geometryError": 8.711617555284823e-05,
+      "fixtureError": 8.711617555284823e-05
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Ear1.L",
+      "geometryError": 0.00022012359545930948,
+      "fixtureError": 0.00022012359545930948
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Ear2.L",
+      "geometryError": 0.0003359203960004997,
+      "fixtureError": 0.0003359203960004997
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Ear1.R",
+      "geometryError": 0.0002918883395697236,
+      "fixtureError": 0.0002918883395697236
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Ear2.R",
+      "geometryError": 9.695958866437482e-05,
+      "fixtureError": 9.695958866437482e-05
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Thigh.R",
+      "geometryError": 2.7991978091002068e-06,
+      "fixtureError": 2.7991978091002068e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Shin.R",
+      "geometryError": 3.0269148307837668e-06,
+      "fixtureError": 3.0269148307837668e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Forearm.R",
+      "geometryError": 0.00042748995818664426,
+      "fixtureError": 0.00042748995818664426
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "UpperArm.R",
+      "geometryError": 0.0004931792610998187,
+      "fixtureError": 0.0004931792610998187
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Thigh.L",
+      "geometryError": 6.54134576727472e-07,
+      "fixtureError": 6.54134576727472e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Shin.L",
+      "geometryError": 0.00014292564021367582,
+      "fixtureError": 0.00014292564021367582
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "UpperArm.L",
+      "geometryError": 0.0006680566062366999,
+      "fixtureError": 0.0006680566062366999
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Head",
+      "geometryError": 0.0003158035630842493,
+      "fixtureError": 0.0003158035630842493
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Forearm.L",
+      "geometryError": 0.0004730582500638292,
+      "fixtureError": 0.0004730582500638292
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Foot.R",
+      "geometryError": 0.0001482279475619741,
+      "fixtureError": 0.0001482279475619741
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Foot.L",
+      "geometryError": 4.21007666813189e-05,
+      "fixtureError": 4.21007666813189e-05
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Mitten.R",
+      "geometryError": 6.053660244198511e-07,
+      "fixtureError": 6.053660244198511e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Mitten.L",
+      "geometryError": 4.984469524904611e-07,
+      "fixtureError": 4.984469524904611e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Tail",
+      "geometryError": 3.556876677635046e-07,
+      "fixtureError": 3.556876677635046e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "torso",
+      "geometryError": 0.000166494619207036,
+      "fixtureError": 0.000166494619207036
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Ear1.L",
+      "geometryError": 0.0002483933759744872,
+      "fixtureError": 0.0002483933759744872
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Ear2.L",
+      "geometryError": 0.0002926903888450516,
+      "fixtureError": 0.0002926903888450516
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Ear1.R",
+      "geometryError": 0.00031500536821593705,
+      "fixtureError": 0.00031500536821593705
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Ear2.R",
+      "geometryError": 3.456698128667668e-05,
+      "fixtureError": 3.456698128667668e-05
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Thigh.R",
+      "geometryError": 1.108135309157987e-05,
+      "fixtureError": 1.108135309157987e-05
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Shin.R",
+      "geometryError": 6.157281290941619e-07,
+      "fixtureError": 6.157281290941619e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Forearm.R",
+      "geometryError": 0.0004350048305991616,
+      "fixtureError": 0.0004350048305991616
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "UpperArm.R",
+      "geometryError": 0.0004692215183794701,
+      "fixtureError": 0.0004692215183794701
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Thigh.L",
+      "geometryError": 5.427230276300321e-07,
+      "fixtureError": 5.427230276300321e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Shin.L",
+      "geometryError": 9.969623251035453e-05,
+      "fixtureError": 9.969623251035453e-05
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "UpperArm.L",
+      "geometryError": 0.0006749437699014038,
+      "fixtureError": 0.0006749437699014038
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Head",
+      "geometryError": 0.00018791439280674282,
+      "fixtureError": 0.00018791439280674282
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Forearm.L",
+      "geometryError": 0.00048429214020151434,
+      "fixtureError": 0.00048429214020151434
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Foot.R",
+      "geometryError": 1.0415484157810795e-05,
+      "fixtureError": 1.0415484157810795e-05
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Foot.L",
+      "geometryError": 5.938355140955309e-07,
+      "fixtureError": 5.938355140955309e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Mitten.R",
+      "geometryError": 6.2557029700816e-07,
+      "fixtureError": 6.2557029700816e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Mitten.L",
+      "geometryError": 4.85655379023342e-07,
+      "fixtureError": 4.85655379023342e-07
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Tail",
+      "geometryError": 3.557693575295673e-07,
+      "fixtureError": 3.557693575295673e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "torso",
+      "geometryError": 9.547278438781781e-05,
+      "fixtureError": 9.547278438781781e-05
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Ear1.L",
+      "geometryError": 0.00038412029116008384,
+      "fixtureError": 0.00038412029116008384
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Ear2.L",
+      "geometryError": 7.846487884766162e-06,
+      "fixtureError": 7.846487884766162e-06
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Ear1.R",
+      "geometryError": 0.0017145395501430016,
+      "fixtureError": 0.0017145395501430016
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Ear2.R",
+      "geometryError": 0.00032657120716916843,
+      "fixtureError": 0.00032657120716916843
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Thigh.R",
+      "geometryError": 0.0005088704311676517,
+      "fixtureError": 0.0005088704311676517
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Shin.R",
+      "geometryError": 5.693208309232034e-07,
+      "fixtureError": 5.693208309232034e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Forearm.R",
+      "geometryError": 0.000456502321574348,
+      "fixtureError": 0.000456502321574348
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "UpperArm.R",
+      "geometryError": 0.00022827196060926092,
+      "fixtureError": 0.00022827196060926092
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Thigh.L",
+      "geometryError": 3.0970128936935737e-06,
+      "fixtureError": 3.0970128936935737e-06
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Shin.L",
+      "geometryError": 0.0011330924176813362,
+      "fixtureError": 0.0011330924176813362
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "UpperArm.L",
+      "geometryError": 0.0005798726808818877,
+      "fixtureError": 0.0005798726808818877
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Head",
+      "geometryError": 0.0002653630946735097,
+      "fixtureError": 0.0002653630946735097
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Forearm.L",
+      "geometryError": 0.0005734828261571012,
+      "fixtureError": 0.0005734828261571012
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Foot.R",
+      "geometryError": 5.878129627490125e-07,
+      "fixtureError": 5.878129627490125e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Foot.L",
+      "geometryError": 5.90673363637384e-07,
+      "fixtureError": 5.90673363637384e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Mitten.R",
+      "geometryError": 5.846603809978035e-07,
+      "fixtureError": 5.846603809978035e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Mitten.L",
+      "geometryError": 4.922439074128704e-07,
+      "fixtureError": 4.922439074128704e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0,
+      "name": "Tail",
+      "geometryError": 3.1423118668216787e-07,
+      "fixtureError": 3.1423118668216787e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "torso",
+      "geometryError": 1.2864510091192827e-05,
+      "fixtureError": 1.2864510091192827e-05
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Ear1.L",
+      "geometryError": 0.0003746094754912832,
+      "fixtureError": 0.0003746094754912832
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Ear2.L",
+      "geometryError": 0.00012951150776663312,
+      "fixtureError": 0.00012951150776663312
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Ear1.R",
+      "geometryError": 0.001703765417125025,
+      "fixtureError": 0.001703765417125025
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Ear2.R",
+      "geometryError": 0.0002889202688658443,
+      "fixtureError": 0.0002889202688658443
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Thigh.R",
+      "geometryError": 0.0005510529672827502,
+      "fixtureError": 0.0005510529672827502
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Shin.R",
+      "geometryError": 5.878286133687016e-07,
+      "fixtureError": 5.878286133687016e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Forearm.R",
+      "geometryError": 0.0004505768143765465,
+      "fixtureError": 0.0004505768143765465
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "UpperArm.R",
+      "geometryError": 0.00024997552974914683,
+      "fixtureError": 0.00024997552974914683
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Thigh.L",
+      "geometryError": 2.684142006881274e-06,
+      "fixtureError": 2.684142006881274e-06
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Shin.L",
+      "geometryError": 0.0009587708737273104,
+      "fixtureError": 0.0009587708737273104
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "UpperArm.L",
+      "geometryError": 0.0005723059666686847,
+      "fixtureError": 0.0005723059666686847
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Head",
+      "geometryError": 0.00037649183003074516,
+      "fixtureError": 0.00037649183003074516
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Forearm.L",
+      "geometryError": 0.0005672402363676721,
+      "fixtureError": 0.0005672402363676721
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Foot.R",
+      "geometryError": 5.875459336834865e-07,
+      "fixtureError": 5.875459336834865e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Foot.L",
+      "geometryError": 0.002303832360524005,
+      "fixtureError": 0.002303832360524005
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Mitten.R",
+      "geometryError": 5.838923224921189e-07,
+      "fixtureError": 5.838923224921189e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Mitten.L",
+      "geometryError": 4.914152929025306e-07,
+      "fixtureError": 4.914152929025306e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Tail",
+      "geometryError": 3.141254842908836e-07,
+      "fixtureError": 3.141254842908836e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "torso",
+      "geometryError": 9.547278438759577e-05,
+      "fixtureError": 9.547278438759577e-05
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Ear1.L",
+      "geometryError": 0.00038412029116008384,
+      "fixtureError": 0.00038412029116008384
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Ear2.L",
+      "geometryError": 7.846487884322073e-06,
+      "fixtureError": 7.846487884322073e-06
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Ear1.R",
+      "geometryError": 0.0017145198379928672,
+      "fixtureError": 0.0017145198379928672
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Ear2.R",
+      "geometryError": 0.0003265712071693905,
+      "fixtureError": 0.0003265712071693905
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Thigh.R",
+      "geometryError": 0.0005436122342543648,
+      "fixtureError": 0.0005436122342543648
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Shin.R",
+      "geometryError": 6.22317133824879e-07,
+      "fixtureError": 6.22317133824879e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Forearm.R",
+      "geometryError": 0.00045650055880575025,
+      "fixtureError": 0.00045650055880575025
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "UpperArm.R",
+      "geometryError": 0.0002283035662031807,
+      "fixtureError": 0.0002283035662031807
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Thigh.L",
+      "geometryError": 3.0056170357006806e-06,
+      "fixtureError": 3.0056170357006806e-06
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Shin.L",
+      "geometryError": 0.0007819699931757018,
+      "fixtureError": 0.0007819699931757018
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "UpperArm.L",
+      "geometryError": 0.0005798558065059911,
+      "fixtureError": 0.0005798558065059911
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Head",
+      "geometryError": 0.0002653630946740648,
+      "fixtureError": 0.0002653630946740648
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Forearm.L",
+      "geometryError": 0.000573608113136892,
+      "fixtureError": 0.000573608113136892
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Foot.R",
+      "geometryError": 5.87812962193901e-07,
+      "fixtureError": 5.87812962193901e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Foot.L",
+      "geometryError": 5.906733635541173e-07,
+      "fixtureError": 5.906733635541173e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Mitten.R",
+      "geometryError": 5.728564402285308e-07,
+      "fixtureError": 5.728564402285308e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Mitten.L",
+      "geometryError": 4.982359751437571e-07,
+      "fixtureError": 4.982359751437571e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Tail",
+      "geometryError": 3.142311864046121e-07,
+      "fixtureError": 3.142311864046121e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "torso",
+      "geometryError": 0.00014008786027397413,
+      "fixtureError": 0.00014008786027397413
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Ear1.L",
+      "geometryError": 0.00038412029116008384,
+      "fixtureError": 0.00038412029116008384
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Ear2.L",
+      "geometryError": 7.846487884877185e-06,
+      "fixtureError": 7.846487884877185e-06
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Ear1.R",
+      "geometryError": 0.0017145330092303013,
+      "fixtureError": 0.0017145330092303013
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Ear2.R",
+      "geometryError": 0.00032657120716916843,
+      "fixtureError": 0.00032657120716916843
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Thigh.R",
+      "geometryError": 0.0005032821874093596,
+      "fixtureError": 0.0005032821874093596
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Shin.R",
+      "geometryError": 0.00010278437111765903,
+      "fixtureError": 0.00010278437111765903
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Forearm.R",
+      "geometryError": 0.00045649585681806215,
+      "fixtureError": 0.00045649585681806215
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "UpperArm.R",
+      "geometryError": 0.00022815364924078096,
+      "fixtureError": 0.00022815364924078096
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Thigh.L",
+      "geometryError": 2.9201568487735585e-06,
+      "fixtureError": 2.9201568487735585e-06
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Shin.L",
+      "geometryError": 0.000607777949805488,
+      "fixtureError": 0.000607777949805488
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "UpperArm.L",
+      "geometryError": 0.0005797074783484568,
+      "fixtureError": 0.0005797074783484568
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Head",
+      "geometryError": 0.0002653630946733987,
+      "fixtureError": 0.0002653630946733987
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Forearm.L",
+      "geometryError": 0.0005734981621342561,
+      "fixtureError": 0.0005734981621342561
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Foot.R",
+      "geometryError": 1.1992899568546989e-05,
+      "fixtureError": 1.1992899568546989e-05
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Foot.L",
+      "geometryError": 5.906733636651396e-07,
+      "fixtureError": 5.906733636651396e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Mitten.R",
+      "geometryError": 5.970122076703888e-07,
+      "fixtureError": 5.970122076703888e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Mitten.L",
+      "geometryError": 4.922439074128704e-07,
+      "fixtureError": 4.922439074128704e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Tail",
+      "geometryError": 3.1423118670992345e-07,
+      "fixtureError": 3.1423118670992345e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "torso",
+      "geometryError": 0.0001232793927488096,
+      "fixtureError": 0.0001232793927488096
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Ear1.L",
+      "geometryError": 0.00039482400904228276,
+      "fixtureError": 0.00039482400904228276
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Ear2.L",
+      "geometryError": 8.74167575881657e-06,
+      "fixtureError": 8.74167575881657e-06
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Ear1.R",
+      "geometryError": 0.0016439346720216186,
+      "fixtureError": 0.0016439346720216186
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Ear2.R",
+      "geometryError": 0.0003776083181232792,
+      "fixtureError": 0.0003776083181232792
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Thigh.R",
+      "geometryError": 0.00047314017144639564,
+      "fixtureError": 0.00047314017144639564
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Shin.R",
+      "geometryError": 5.537666796229246e-07,
+      "fixtureError": 5.537666796229246e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Forearm.R",
+      "geometryError": 0.00046315632439197785,
+      "fixtureError": 0.00046315632439197785
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "UpperArm.R",
+      "geometryError": 0.0002342503747150282,
+      "fixtureError": 0.0002342503747150282
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Thigh.L",
+      "geometryError": 2.9300471999782474e-06,
+      "fixtureError": 2.9300471999782474e-06
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Shin.L",
+      "geometryError": 0.0006846464576801825,
+      "fixtureError": 0.0006846464576801825
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "UpperArm.L",
+      "geometryError": 0.0005190121503912959,
+      "fixtureError": 0.0005190121503912959
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Head",
+      "geometryError": 0.00016814176320423257,
+      "fixtureError": 0.00016814176320423257
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Forearm.L",
+      "geometryError": 0.0006005176590053729,
+      "fixtureError": 0.0006005176590053729
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Foot.R",
+      "geometryError": 5.880300556482254e-07,
+      "fixtureError": 5.880300556482254e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Foot.L",
+      "geometryError": 5.932415541032299e-07,
+      "fixtureError": 5.932415541032299e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Mitten.R",
+      "geometryError": 5.72754875527437e-07,
+      "fixtureError": 5.72754875527437e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Mitten.L",
+      "geometryError": 4.984778105843191e-07,
+      "fixtureError": 4.984778105843191e-07
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Tail",
+      "geometryError": 3.143053324272671e-07,
+      "fixtureError": 3.143053324272671e-07
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0,
+      "name": "torso",
+      "geometryError": 0.000139860807751635,
+      "fixtureError": 0.000139860807751635
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0,
+      "name": "Thigh.R",
+      "geometryError": 0.0009324032838935459,
+      "fixtureError": 0.0009324032838935459
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0,
+      "name": "Thigh.L",
+      "geometryError": 0.00015288556522019547,
+      "fixtureError": 0.00015288556522019547
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0,
+      "name": "Foot.R",
+      "geometryError": 0.00015902557857661037,
+      "fixtureError": 0.00015902557857661037
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0,
+      "name": "Shin.R",
+      "geometryError": 0.0016252212767138285,
+      "fixtureError": 0.0016252212767138285
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0,
+      "name": "Mitten.R",
+      "geometryError": 0.0005089829572089144,
+      "fixtureError": 0.0005089829572089144
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0,
+      "name": "Forearm.R",
+      "geometryError": 9.867697061816116e-05,
+      "fixtureError": 9.867697061816116e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0,
+      "name": "UpperArm.R",
+      "geometryError": 0.001752631902942614,
+      "fixtureError": 0.001752631902942614
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0,
+      "name": "Head",
+      "geometryError": 8.63605499779041e-05,
+      "fixtureError": 8.63605499779041e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0,
+      "name": "Foot.L",
+      "geometryError": 0.00013959835495302997,
+      "fixtureError": 0.00013959835495302997
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0,
+      "name": "Shin.L",
+      "geometryError": 0.0014707840235281822,
+      "fixtureError": 0.0014707840235281822
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0,
+      "name": "UpperArm.L",
+      "geometryError": 7.971440891640924e-05,
+      "fixtureError": 7.971440891640924e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0,
+      "name": "Forearm.L",
+      "geometryError": 0.00022386820313258227,
+      "fixtureError": 0.00022386820313258227
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0,
+      "name": "Mitten.L",
+      "geometryError": 0.00027563852622325413,
+      "fixtureError": 0.00027563852622325413
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "torso",
+      "geometryError": 0.00013084213356218122,
+      "fixtureError": 0.00013084213356218122
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Thigh.R",
+      "geometryError": 0.0007737405600045655,
+      "fixtureError": 0.0007737405600045655
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Thigh.L",
+      "geometryError": 1.5266910495359554e-05,
+      "fixtureError": 1.5266910495359554e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Foot.R",
+      "geometryError": 0.00015850600234873502,
+      "fixtureError": 0.00015850600234873502
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Shin.R",
+      "geometryError": 0.0016870887084321495,
+      "fixtureError": 0.0016870887084321495
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Mitten.R",
+      "geometryError": 0.0004883848539432023,
+      "fixtureError": 0.0004883848539432023
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Forearm.R",
+      "geometryError": 4.319673113295508e-05,
+      "fixtureError": 4.319673113295508e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "UpperArm.R",
+      "geometryError": 0.0017445227789463225,
+      "fixtureError": 0.0017445227789463225
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Head",
+      "geometryError": 0.00013080951162658394,
+      "fixtureError": 0.00013080951162658394
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Foot.L",
+      "geometryError": 0.00015821793314907406,
+      "fixtureError": 0.00015821793314907406
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Shin.L",
+      "geometryError": 0.0013910294234111276,
+      "fixtureError": 0.0013910294234111276
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "UpperArm.L",
+      "geometryError": 5.4633664561265505e-05,
+      "fixtureError": 5.4633664561265505e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Forearm.L",
+      "geometryError": 0.0001851423454224399,
+      "fixtureError": 0.0001851423454224399
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 0.6,
+      "name": "Mitten.L",
+      "geometryError": 0.00035901443515284903,
+      "fixtureError": 0.00035901443515284903
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "torso",
+      "geometryError": 0.0001397714007838613,
+      "fixtureError": 0.0001397714007838613
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Thigh.R",
+      "geometryError": 0.0004725618740559767,
+      "fixtureError": 0.0004725618740559767
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Thigh.L",
+      "geometryError": 5.963036226969143e-05,
+      "fixtureError": 5.963036226969143e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Foot.R",
+      "geometryError": 0.00015902557857649935,
+      "fixtureError": 0.00015902557857649935
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Shin.R",
+      "geometryError": 0.0018104089212673813,
+      "fixtureError": 0.0018104089212673813
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Mitten.R",
+      "geometryError": 0.0005089772446602581,
+      "fixtureError": 0.0005089772446602581
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Forearm.R",
+      "geometryError": 9.864157409555929e-05,
+      "fixtureError": 9.864157409555929e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "UpperArm.R",
+      "geometryError": 0.0017528565569608912,
+      "fixtureError": 0.0017528565569608912
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Head",
+      "geometryError": 8.634633874948783e-05,
+      "fixtureError": 8.634633874948783e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Foot.L",
+      "geometryError": 0.0001395983549531965,
+      "fixtureError": 0.0001395983549531965
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Shin.L",
+      "geometryError": 0.0012434183418337241,
+      "fixtureError": 0.0012434183418337241
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "UpperArm.L",
+      "geometryError": 7.960328413636475e-05,
+      "fixtureError": 7.960328413636475e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Forearm.L",
+      "geometryError": 0.00022373175411005697,
+      "fixtureError": 0.00022373175411005697
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 1.5707963267948966,
+      "name": "Mitten.L",
+      "geometryError": 0.00027571662225223115,
+      "fixtureError": 0.00027571662225223115
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "torso",
+      "geometryError": 0.00013968199381730884,
+      "fixtureError": 0.00013968199381730884
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Thigh.R",
+      "geometryError": 0.00024147496433579718,
+      "fixtureError": 0.00024147496433579718
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Thigh.L",
+      "geometryError": 9.554964781521846e-05,
+      "fixtureError": 9.554964781521846e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Foot.R",
+      "geometryError": 0.00015902557857616628,
+      "fixtureError": 0.00015902557857616628
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Shin.R",
+      "geometryError": 0.001828314189398772,
+      "fixtureError": 0.001828314189398772
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Mitten.R",
+      "geometryError": 0.0005089829572093585,
+      "fixtureError": 0.0005089829572093585
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Forearm.R",
+      "geometryError": 9.867697061816116e-05,
+      "fixtureError": 9.867697061816116e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "UpperArm.R",
+      "geometryError": 0.0017527805812957986,
+      "fixtureError": 0.0017527805812957986
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Head",
+      "geometryError": 8.631670545922177e-05,
+      "fixtureError": 8.631670545922177e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Foot.L",
+      "geometryError": 0.00013959835495347406,
+      "fixtureError": 0.00013959835495347406
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Shin.L",
+      "geometryError": 0.0012086324882030208,
+      "fixtureError": 0.0012086324882030208
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "UpperArm.L",
+      "geometryError": 7.958247877493108e-05,
+      "fixtureError": 7.958247877493108e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Forearm.L",
+      "geometryError": 0.00022375672838870209,
+      "fixtureError": 0.00022375672838870209
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 3.141592653589793,
+      "name": "Mitten.L",
+      "geometryError": 0.0002756723220951329,
+      "fixtureError": 0.0002756723220951329
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "torso",
+      "geometryError": 0.00017786933671182226,
+      "fixtureError": 0.00017786933671182226
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Thigh.R",
+      "geometryError": 0.0002982625717500298,
+      "fixtureError": 0.0002982625717500298
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Thigh.L",
+      "geometryError": 4.0890576476160234e-05,
+      "fixtureError": 4.0890576476160234e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Foot.R",
+      "geometryError": 0.0003930527140920681,
+      "fixtureError": 0.0003930527140920681
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Shin.R",
+      "geometryError": 0.0018469680728929738,
+      "fixtureError": 0.0018469680728929738
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Mitten.R",
+      "geometryError": 0.0005322071656630456,
+      "fixtureError": 0.0005322071656630456
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Forearm.R",
+      "geometryError": 9.960490760985152e-05,
+      "fixtureError": 9.960490760985152e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "UpperArm.R",
+      "geometryError": 0.001761734112559088,
+      "fixtureError": 0.001761734112559088
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Head",
+      "geometryError": 3.6040489711786083e-05,
+      "fixtureError": 3.6040489711786083e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Foot.L",
+      "geometryError": 0.00012523891477167481,
+      "fixtureError": 0.00012523891477167481
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Shin.L",
+      "geometryError": 0.0010995744110697814,
+      "fixtureError": 0.0010995744110697814
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "UpperArm.L",
+      "geometryError": 3.232544098796808e-05,
+      "fixtureError": 3.232544098796808e-05
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Forearm.L",
+      "geometryError": 0.0001616593071926964,
+      "fixtureError": 0.0001616593071926964
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "angle": 4.7,
+      "name": "Mitten.L",
+      "geometryError": 0.00024674226598575544,
+      "fixtureError": 0.00024674226598575544
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0,
+      "name": "torso",
+      "geometryError": 0.00017739150123174952,
+      "fixtureError": 0.00017739150123174952
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0,
+      "name": "Thigh.R",
+      "geometryError": 3.80583662820122e-05,
+      "fixtureError": 3.80583662820122e-05
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0,
+      "name": "Thigh.L",
+      "geometryError": 9.099584054794718e-05,
+      "fixtureError": 9.099584054794718e-05
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0,
+      "name": "Foot.R",
+      "geometryError": 0.0013071994527620312,
+      "fixtureError": 0.0013071994527620312
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0,
+      "name": "Shin.R",
+      "geometryError": 0.00040159703116326995,
+      "fixtureError": 0.00040159703116326995
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0,
+      "name": "Mitten.R",
+      "geometryError": 0.00022278467480285613,
+      "fixtureError": 0.00022278467480285613
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0,
+      "name": "Forearm.R",
+      "geometryError": 0.0009869229525292234,
+      "fixtureError": 0.0009869229525292234
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0,
+      "name": "UpperArm.R",
+      "geometryError": 0.001256684133366548,
+      "fixtureError": 0.001256684133366548
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0,
+      "name": "Head",
+      "geometryError": 6.300528730496247e-05,
+      "fixtureError": 6.300528730496247e-05
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0,
+      "name": "Foot.L",
+      "geometryError": 0.001155147249291888,
+      "fixtureError": 0.001155147249291888
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0,
+      "name": "Shin.L",
+      "geometryError": 0.0007709951751917465,
+      "fixtureError": 0.0007709951751917465
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0,
+      "name": "UpperArm.L",
+      "geometryError": 0.0003333325532257625,
+      "fixtureError": 0.0003333325532257625
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0,
+      "name": "Forearm.L",
+      "geometryError": 7.201626119623938e-05,
+      "fixtureError": 7.201626119623938e-05
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0,
+      "name": "Mitten.L",
+      "geometryError": 0.0006354992473949217,
+      "fixtureError": 0.0006354992473949217
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "torso",
+      "geometryError": 0.0001713308017052828,
+      "fixtureError": 0.0001713308017052828
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Thigh.R",
+      "geometryError": 5.765372133459401e-05,
+      "fixtureError": 5.765372133459401e-05
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Thigh.L",
+      "geometryError": 2.8429199978807773e-05,
+      "fixtureError": 2.8429199978807773e-05
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Foot.R",
+      "geometryError": 0.0013348856299728595,
+      "fixtureError": 0.0013348856299728595
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Shin.R",
+      "geometryError": 0.00040061405418923,
+      "fixtureError": 0.00040061405418923
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Mitten.R",
+      "geometryError": 0.0001949627171515811,
+      "fixtureError": 0.0001949627171515811
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Forearm.R",
+      "geometryError": 0.0009788686022047521,
+      "fixtureError": 0.0009788686022047521
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "UpperArm.R",
+      "geometryError": 0.0012474004955058682,
+      "fixtureError": 0.0012474004955058682
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Head",
+      "geometryError": 8.794436394898852e-05,
+      "fixtureError": 8.794436394898852e-05
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Foot.L",
+      "geometryError": 0.0012637798445172266,
+      "fixtureError": 0.0012637798445172266
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Shin.L",
+      "geometryError": 0.0004305649879345341,
+      "fixtureError": 0.0004305649879345341
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "UpperArm.L",
+      "geometryError": 0.0002940980992112152,
+      "fixtureError": 0.0002940980992112152
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Forearm.L",
+      "geometryError": 9.266526829754262e-05,
+      "fixtureError": 9.266526829754262e-05
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 0.6,
+      "name": "Mitten.L",
+      "geometryError": 0.0008375549955155215,
+      "fixtureError": 0.0008375549955155215
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "torso",
+      "geometryError": 0.00017739150123174952,
+      "fixtureError": 0.00017739150123174952
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Thigh.R",
+      "geometryError": 0.00014229703334689425,
+      "fixtureError": 0.00014229703334689425
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Thigh.L",
+      "geometryError": 0.00011175414169972697,
+      "fixtureError": 0.00011175414169972697
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Foot.R",
+      "geometryError": 0.001258975427762099,
+      "fixtureError": 0.001258975427762099
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Shin.R",
+      "geometryError": 0.0002685362661767332,
+      "fixtureError": 0.0002685362661767332
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Mitten.R",
+      "geometryError": 0.00022290185067097568,
+      "fixtureError": 0.00022290185067097568
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Forearm.R",
+      "geometryError": 0.0009868497440979063,
+      "fixtureError": 0.0009868497440979063
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "UpperArm.R",
+      "geometryError": 0.0012566968342806462,
+      "fixtureError": 0.0012566968342806462
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Head",
+      "geometryError": 6.30052873056286e-05,
+      "fixtureError": 6.30052873056286e-05
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Foot.L",
+      "geometryError": 0.0013204178667880484,
+      "fixtureError": 0.0013204178667880484
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Shin.L",
+      "geometryError": 0.0011598399817787097,
+      "fixtureError": 0.0011598399817787097
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "UpperArm.L",
+      "geometryError": 0.00033354842333022106,
+      "fixtureError": 0.00033354842333022106
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Forearm.L",
+      "geometryError": 7.207088119776106e-05,
+      "fixtureError": 7.207088119776106e-05
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 1.5707963267948966,
+      "name": "Mitten.L",
+      "geometryError": 0.0006354994000472569,
+      "fixtureError": 0.0006354994000472569
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "torso",
+      "geometryError": 0.00017739150123141645,
+      "fixtureError": 0.00017739150123141645
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Thigh.R",
+      "geometryError": 0.00010271974376729887,
+      "fixtureError": 0.00010271974376729887
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Thigh.L",
+      "geometryError": 0.00016358582096977214,
+      "fixtureError": 0.00016358582096977214
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Foot.R",
+      "geometryError": 0.0012635782918832827,
+      "fixtureError": 0.0012635782918832827
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Shin.R",
+      "geometryError": 0.00035846894867086476,
+      "fixtureError": 0.00035846894867086476
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Mitten.R",
+      "geometryError": 0.0002228415800655803,
+      "fixtureError": 0.0002228415800655803
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Forearm.R",
+      "geometryError": 0.0009869559467761135,
+      "fixtureError": 0.0009869559467761135
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "UpperArm.R",
+      "geometryError": 0.0012566653700194497,
+      "fixtureError": 0.0012566653700194497
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Head",
+      "geometryError": 6.300528730507349e-05,
+      "fixtureError": 6.300528730507349e-05
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Foot.L",
+      "geometryError": 0.0012439703283528836,
+      "fixtureError": 0.0012439703283528836
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Shin.L",
+      "geometryError": 0.0010661038600163764,
+      "fixtureError": 0.0010661038600163764
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "UpperArm.L",
+      "geometryError": 0.00033345899377223986,
+      "fixtureError": 0.00033345899377223986
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Forearm.L",
+      "geometryError": 7.201626119623938e-05,
+      "fixtureError": 7.201626119623938e-05
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 3.141592653589793,
+      "name": "Mitten.L",
+      "geometryError": 0.0006354992473949217,
+      "fixtureError": 0.0006354992473949217
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "torso",
+      "geometryError": 0.00046970006972379963,
+      "fixtureError": 0.00046970006972379963
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Thigh.R",
+      "geometryError": 7.027831900341397e-05,
+      "fixtureError": 7.027831900341397e-05
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Thigh.L",
+      "geometryError": 0.00014104599481434832,
+      "fixtureError": 0.00014104599481434832
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Foot.R",
+      "geometryError": 0.001265579804251793,
+      "fixtureError": 0.001265579804251793
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Shin.R",
+      "geometryError": 0.00032713169542075704,
+      "fixtureError": 0.00032713169542075704
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Mitten.R",
+      "geometryError": 0.00025424050670341813,
+      "fixtureError": 0.00025424050670341813
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Forearm.R",
+      "geometryError": 0.000995843677946917,
+      "fixtureError": 0.000995843677946917
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "UpperArm.R",
+      "geometryError": 0.0011799894079969064,
+      "fixtureError": 0.0011799894079969064
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Head",
+      "geometryError": 7.159059429895365e-05,
+      "fixtureError": 7.159059429895365e-05
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Foot.L",
+      "geometryError": 0.0012077758526336524,
+      "fixtureError": 0.0012077758526336524
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Shin.L",
+      "geometryError": 0.0011399110181660177,
+      "fixtureError": 0.0011399110181660177
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "UpperArm.L",
+      "geometryError": 0.0003843756830996803,
+      "fixtureError": 0.0003843756830996803
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Forearm.L",
+      "geometryError": 6.560478007600068e-05,
+      "fixtureError": 6.560478007600068e-05
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "angle": 4.7,
+      "name": "Mitten.L",
+      "geometryError": 0.0006645301427381511,
+      "fixtureError": 0.0006645301427381511
+    }
+  ],
+  "floor-measurements": [
+    {
+      "model": "bunny",
+      "angle": 0,
+      "bottom": -0.004729638767272615,
+      "contacts": 3
+    },
+    {
+      "model": "bunny",
+      "angle": 1.5707963267948966,
+      "bottom": -0.0050005803180425135,
+      "contacts": 5
+    },
+    {
+      "model": "bunny",
+      "angle": 3.141592653589793,
+      "bottom": -0.005000244124463371,
+      "contacts": 6
+    },
+    {
+      "model": "bunny",
+      "angle": 4.7,
+      "bottom": -0.004999981214892674,
+      "contacts": 4
+    },
+    {
+      "model": "sumo",
+      "angle": 0,
+      "bottom": -0.00504969145467718,
+      "contacts": 3
+    },
+    {
+      "model": "sumo",
+      "angle": 1.5707963267948966,
+      "bottom": -0.0035128370846021495,
+      "contacts": 2
+    },
+    {
+      "model": "sumo",
+      "angle": 3.141592653589793,
+      "bottom": -0.005000417590049572,
+      "contacts": 5
+    },
+    {
+      "model": "sumo",
+      "angle": 4.7,
+      "bottom": -0.004999970142887944,
+      "contacts": 4
+    }
+  ],
+  "grip-measurements": [
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.001811186717517627,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -2.6287520771273165e-11
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 6.94515468013014e-05,
+      "colliderGap": 0,
+      "jointError": 2.19630592173418e-05,
+      "depthError": -8.743006318923108e-16
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.0019618257136196494,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -2.6287520771273165e-11
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 7.084051224423934e-05,
+      "colliderGap": 0,
+      "jointError": 2.19630592173418e-05,
+      "depthError": -8.743006318923108e-16
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 5.439626075311017e-05,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -2.6287520771273165e-11
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 7.109737298502397e-05,
+      "colliderGap": 0,
+      "jointError": 2.19630592173418e-05,
+      "depthError": -8.743006318923108e-16
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.00042988342055016917,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -1.4680368032315982e-11
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.0001724803656453187,
+      "colliderGap": 0,
+      "jointError": 1.0754848244213919e-05,
+      "depthError": -4.440892098500626e-16
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.0003787828087796846,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -1.4680368032315982e-11
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.0006008282416479315,
+      "colliderGap": 0,
+      "jointError": 1.0754848244213919e-05,
+      "depthError": -4.440892098500626e-16
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 0.00014414877275611515,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -1.4680368032315982e-11
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 0.00014611214222506134,
+      "colliderGap": 0,
+      "jointError": 1.0754848244213919e-05,
+      "depthError": -4.440892098500626e-16
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Head",
+      "samples": 12
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 5.864866682703769e-05,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -9.365563324828519e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.0004651929280128123,
+      "colliderGap": 0,
+      "jointError": 7.45536198833532e-06,
+      "depthError": 1.0408340855860843e-16
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.0006648675561759695,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -9.365563324828519e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.0002583056204749454,
+      "colliderGap": 0,
+      "jointError": 7.45536198833532e-06,
+      "depthError": 1.0408340855860843e-16
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 0.0003548310986737753,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -9.365563324828519e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 7.214061311171378e-05,
+      "colliderGap": 0,
+      "jointError": 7.45536198833532e-06,
+      "depthError": 1.0408340855860843e-16
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.00032322176418371094,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -3.2601406280002854e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.0005773582968444535,
+      "colliderGap": 0,
+      "jointError": 2.4042210096340056e-05,
+      "depthError": 3.469446951953614e-17
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.00033717270714128813,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -3.2601406280002854e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.0004368162272379807,
+      "colliderGap": 0,
+      "jointError": 2.4042210096340056e-05,
+      "depthError": 3.469446951953614e-17
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 0.00032891550656620304,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -3.2601406280002854e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 0.00029675545635214217,
+      "colliderGap": 0,
+      "jointError": 2.4042210096340056e-05,
+      "depthError": 3.469446951953614e-17
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "torso",
+      "samples": 12
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.00026713675936409787,
+      "colliderGap": 0,
+      "jointError": 0.0006188756175500202,
+      "depthError": -3.2258638868881695e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.000620207829787576,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -3.127295885863024e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.0017684035874492442,
+      "colliderGap": 0,
+      "jointError": 0.0006188756175500202,
+      "depthError": -3.2258638868881695e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.001315772300362546,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -3.127295885863024e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 0.0003338632375201842,
+      "colliderGap": 0,
+      "jointError": 0.0006188756175500202,
+      "depthError": -3.2258638868881695e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 1.525172423318929e-05,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -3.127295885863024e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.0011301452057667027,
+      "colliderGap": 0,
+      "jointError": 0.000706689687595009,
+      "depthError": 0.0002832581805691514
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.0006468837493058463,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -2.076015459040459e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.002347816831781964,
+      "colliderGap": 0,
+      "jointError": 0.000706689687595009,
+      "depthError": 0.0002832581805691514
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.0006403024497557353,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -2.076015459040459e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 0.003474686470754691,
+      "colliderGap": 0,
+      "jointError": 0.000706689687595009,
+      "depthError": 0.0002832581805691514
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 0.0006306763483267315,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -2.076015459040459e-06
+    },
+    {
+      "model": "bunny",
+      "facing": -1,
+      "part": "Foot.L",
+      "samples": 12
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.001999819257587084,
+      "colliderGap": 0.0020000625275405598,
+      "jointError": 3.3509882898584436e-05,
+      "depthError": 4.163336342344337e-17
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.0002616478543243653,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -2.220446049250313e-16
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.0010020324400376215,
+      "colliderGap": 0.0010022011884439092,
+      "jointError": 3.3509882898584436e-05,
+      "depthError": 4.163336342344337e-17
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.00017466046128446536,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -2.220446049250313e-16
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 3.302570928915971e-05,
+      "colliderGap": 2.4483933695737072e-05,
+      "jointError": 3.3509882898584436e-05,
+      "depthError": 4.163336342344337e-17
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 0.0003720284795153841,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -2.220446049250313e-16
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 9.226940352821196e-05,
+      "colliderGap": 9.200914287166458e-05,
+      "jointError": 9.42883153279255e-05,
+      "depthError": 0
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.000693160551804686,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -8.465450562766819e-16
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 9.309545999738659e-05,
+      "colliderGap": 9.288754891716732e-05,
+      "jointError": 9.42883153279255e-05,
+      "depthError": 0
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.0006819275170112751,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -8.465450562766819e-16
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 9.423517759791765e-05,
+      "colliderGap": 9.403718903590221e-05,
+      "jointError": 9.42883153279255e-05,
+      "depthError": 0
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 0.0006310507406491003,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -8.465450562766819e-16
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Head",
+      "samples": 12
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.0004790537617293686,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -3.777712524885568e-05
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.00045026118433072075,
+      "colliderGap": 0,
+      "jointError": 1.4222103957643804e-09,
+      "depthError": -2.57297655403832e-13
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.00024421817837852206,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -3.777712524885568e-05
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.0006427875837871751,
+      "colliderGap": 0,
+      "jointError": 1.4222103957643804e-09,
+      "depthError": -2.57297655403832e-13
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 0.00040459354954622463,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -3.777712524885568e-05
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 0.000814360290412094,
+      "colliderGap": 0,
+      "jointError": 1.4222103957643804e-09,
+      "depthError": -2.57297655403832e-13
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.0018128903793657193,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -5.326017301965358e-05
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.002409366344196384,
+      "colliderGap": 0,
+      "jointError": 1.5320431276773885e-10,
+      "depthError": -2.9412930424577155e-13
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.0019634491413552443,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -5.326017301965358e-05
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.002420094085416027,
+      "colliderGap": 0,
+      "jointError": 1.5320431276773885e-10,
+      "depthError": -2.9412930424577155e-13
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 0.00038217088533503313,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -5.326017301965358e-05
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 0.002430823918398692,
+      "colliderGap": 0,
+      "jointError": 1.5320431276773885e-10,
+      "depthError": -2.9412930424577155e-13
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "torso",
+      "samples": 12
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.0020002778925871947,
+      "colliderGap": 0.002000063862794711,
+      "jointError": 0,
+      "depthError": -1.1512360509335906e-11
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.00033844146951266484,
+      "colliderGap": 0,
+      "jointError": 9.99726592277292e-05,
+      "depthError": -1.3461454173580023e-15
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.0008236545992546392,
+      "colliderGap": 0.0008234385522639554,
+      "jointError": 0,
+      "depthError": -1.1512360509335906e-11
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 6.450518010246908e-08,
+      "colliderGap": 0,
+      "jointError": 9.99726592277292e-05,
+      "depthError": -1.3461454173580023e-15
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 3.286609598346188e-07,
+      "colliderGap": 6.992704138939312e-08,
+      "jointError": 0,
+      "depthError": -1.1512360509335906e-11
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 0.0005671844659181854,
+      "colliderGap": 0,
+      "jointError": 9.99726592277292e-05,
+      "depthError": -1.3461454173580023e-15
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 3.451227194441195e-05,
+      "colliderGap": 3.429759791781378e-05,
+      "jointError": 3.462918345712661e-05,
+      "depthError": -2.9653779431981775e-12
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.0016862279106877082,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": 1.3235193496718978e-10
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 3.452865393901498e-05,
+      "colliderGap": 3.431332635406098e-05,
+      "jointError": 3.462918345712661e-05,
+      "depthError": -2.9653779431981775e-12
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.001684379825225722,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": 1.3235193496718978e-10
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 3.490952179800348e-05,
+      "colliderGap": 3.469348995384958e-05,
+      "jointError": 3.462918345712661e-05,
+      "depthError": -2.9653779431981775e-12
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 0.001682148316743151,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": 1.3235193496718978e-10
+    },
+    {
+      "model": "bunny",
+      "facing": 1,
+      "part": "Foot.L",
+      "samples": 12
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.00021227180934017538,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -4.471622035699674e-06
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.0011916350092657558,
+      "colliderGap": 0,
+      "jointError": 1.1231783944643098e-05,
+      "depthError": 1.6653345369377348e-16
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.00014221915309649988,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -4.471622035699674e-06
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.0011955807239952768,
+      "colliderGap": 0,
+      "jointError": 1.1231783944643098e-05,
+      "depthError": 1.6653345369377348e-16
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 0.0005466852310002021,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -4.471622035699674e-06
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 0.0012070236368432769,
+      "colliderGap": 0,
+      "jointError": 1.1231783944643098e-05,
+      "depthError": 1.6653345369377348e-16
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.0005387563965784541,
+      "colliderGap": 0,
+      "jointError": 3.625764616442241e-05,
+      "depthError": 2.6872435866798217e-08
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.0012195720317274247,
+      "colliderGap": 5.551115123125783e-17,
+      "jointError": 0,
+      "depthError": -2.671474153004283e-16
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.0005665294929700427,
+      "colliderGap": 0,
+      "jointError": 3.625764616442241e-05,
+      "depthError": 2.6872435866798217e-08
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.0012214902339803676,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -2.671474153004283e-16
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 0.0005941063959761572,
+      "colliderGap": 0,
+      "jointError": 3.625764616442241e-05,
+      "depthError": 2.6872435866798217e-08
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 0.0012237706536485247,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -2.671474153004283e-16
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Head",
+      "samples": 12
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 1.6839997439238482e-05,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -0.0002546459203245782
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.0003897979526305326,
+      "colliderGap": 0,
+      "jointError": 9.797804441521625e-05,
+      "depthError": 2.0657462927731185e-08
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 2.1105190218056982e-05,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -0.0002546459203245782
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.0001545511836850887,
+      "colliderGap": 0,
+      "jointError": 9.797804441521625e-05,
+      "depthError": 2.0657462927731185e-08
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 4.304231756963924e-06,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -0.0002546459203245782
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 6.323997149260654e-05,
+      "colliderGap": 0,
+      "jointError": 9.797804441521625e-05,
+      "depthError": 2.0657462927731185e-08
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 8.01700848132029e-05,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": 6.660497054528092e-06
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 1.1395430991205678e-05,
+      "colliderGap": 0,
+      "jointError": 1.4794462041925142e-05,
+      "depthError": 1.3932332315613749e-08
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 5.146463085818523e-05,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": 6.660497054528092e-06
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 5.9163005203809784e-05,
+      "colliderGap": 0,
+      "jointError": 1.4794462041925142e-05,
+      "depthError": 1.3932332315613749e-08
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 0.00010700189976813387,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": 6.660497054528092e-06
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 7.443310612263445e-05,
+      "colliderGap": 0,
+      "jointError": 1.4794462041925142e-05,
+      "depthError": 1.3932332315613749e-08
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "torso",
+      "samples": 12
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.0001455675606302716,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -0.0001740792438076899
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.0010682247916582674,
+      "colliderGap": 0,
+      "jointError": 0.05092259774705853,
+      "depthError": -1.7185967926547363e-11
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.0025545225899451613,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -0.0001740792438076899
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.0001822962355875112,
+      "colliderGap": 0,
+      "jointError": 0.05092259774705853,
+      "depthError": -1.7185967926547363e-11
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 0.0014762322124225388,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -0.0001740792438076899
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 4.3686400553549044e-05,
+      "colliderGap": 0,
+      "jointError": 0.05092259774705853,
+      "depthError": -1.7185967926547363e-11
+    },
+    {
+      "model": "sumo",
+      "facing": -1,
+      "part": "Foot.L",
+      "samples": 6
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.003978974939386142,
+      "colliderGap": 0.003326418026205791,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -1.1213715708641159e-06
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.00019521897264229444,
+      "colliderGap": 0,
+      "jointError": 7.968757854003354e-06,
+      "depthError": -1.3332965287382592e-10
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.00185908685168948,
+      "colliderGap": 0.001585152869848384,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -1.1213715708641159e-06
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 6.311610293963255e-05,
+      "colliderGap": 0,
+      "jointError": 7.968757854003354e-06,
+      "depthError": -1.3332965287382592e-10
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 0.00012931734037158668,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -1.1213715708641159e-06
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Head",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 1.622395523215952e-05,
+      "colliderGap": 0,
+      "jointError": 7.968757854003354e-06,
+      "depthError": -1.3332965287382592e-10
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 8.621855971009451e-05,
+      "colliderGap": 5.551115123125783e-17,
+      "jointError": 0,
+      "depthError": -7.695250013178834e-07
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 7.23811445739742e-05,
+      "colliderGap": 0,
+      "jointError": 7.412602697404682e-06,
+      "depthError": 2.1589827148282836e-10
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 8.623590484738359e-05,
+      "colliderGap": 5.551115123125783e-17,
+      "jointError": 0,
+      "depthError": -7.695250013178834e-07
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 7.055525426478058e-05,
+      "colliderGap": 0,
+      "jointError": 7.412602697404682e-06,
+      "depthError": 2.1589827148282836e-10
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 8.624636684707019e-05,
+      "colliderGap": 5.551115123125783e-17,
+      "jointError": 0,
+      "depthError": -7.695250013178834e-07
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Head",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 6.873766053163998e-05,
+      "colliderGap": 0,
+      "jointError": 7.412602697404682e-06,
+      "depthError": 2.1589827148282836e-10
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Head",
+      "samples": 12
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.004630418834752947,
+      "colliderGap": 0.003843368704392522,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -6.67852929183213e-06
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 8.181366868881276e-05,
+      "colliderGap": 0,
+      "jointError": 6.148437176668402e-05,
+      "depthError": -2.1163626406917047e-14
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.0022588515266320328,
+      "colliderGap": 0.0018688806778742084,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -6.67852929183213e-06
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 7.673383536404897e-05,
+      "colliderGap": 0,
+      "jointError": 6.148437176668402e-05,
+      "depthError": -2.1163626406917047e-14
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 3.3169464413138887e-05,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": -6.67852929183213e-06
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "torso",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 2.438699812425904e-05,
+      "colliderGap": 0,
+      "jointError": 6.148437176668402e-05,
+      "depthError": -2.1163626406917047e-14
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 7.028456191283134e-05,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -1.2932420085202956e-06
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 2.4313939256121426e-05,
+      "colliderGap": 0,
+      "jointError": 8.972546229252938e-06,
+      "depthError": -2.1371793224034263e-15
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 6.908670876043592e-05,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -1.2932420085202956e-06
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 4.024714996122727e-05,
+      "colliderGap": 0,
+      "jointError": 8.972546229252938e-06,
+      "depthError": -2.1371793224034263e-15
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 6.737992304881606e-05,
+      "colliderGap": 5.551115123125783e-17,
+      "jointError": 0,
+      "depthError": -1.2932420085202956e-06
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "torso",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 5.57241484501063e-05,
+      "colliderGap": 0,
+      "jointError": 8.972546229252938e-06,
+      "depthError": -2.1371793224034263e-15
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "torso",
+      "samples": 12
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.003825197238197311,
+      "colliderGap": 0.0030436761261078194,
+      "jointError": 0,
+      "depthError": -2.042982930369752e-06
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 0.0001955809157389493,
+      "colliderGap": 0,
+      "jointError": 9.94768445289625e-05,
+      "depthError": 2.9655492922442406e-09
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.0017014659221882664,
+      "colliderGap": 0.0011379039164509173,
+      "jointError": 0,
+      "depthError": -2.042982930369752e-06
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.00019084706507052846,
+      "colliderGap": 0,
+      "jointError": 9.94768445289625e-05,
+      "depthError": 2.9655492922442406e-09
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 0.00034694554326929894,
+      "colliderGap": 0,
+      "jointError": 0,
+      "depthError": -2.042982930369752e-06
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 0,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 1.3846660262408664e-05,
+      "colliderGap": 0,
+      "jointError": 9.94768445289625e-05,
+      "depthError": 2.9655492922442406e-09
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 0,
+      "meshGap": 0.00028896018452962227,
+      "colliderGap": 0,
+      "jointError": 2.838256079939662e-05,
+      "depthError": -1.877606514627539e-06
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 0,
+      "arm": 1,
+      "meshGap": 9.293913894027732e-05,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": 7.412148353425074e-08
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 0,
+      "meshGap": 0.00028542566671284727,
+      "colliderGap": 0,
+      "jointError": 2.838256079939662e-05,
+      "depthError": -1.877606514627539e-06
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 0.5,
+      "arm": 1,
+      "meshGap": 0.00010300779282999645,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": 7.412148353425074e-08
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 0,
+      "meshGap": 0.0002813906274938721,
+      "colliderGap": 0,
+      "jointError": 2.838256079939662e-05,
+      "depthError": -1.877606514627539e-06
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Foot.L",
+      "tick": 15,
+      "alpha": 1,
+      "arm": 1,
+      "meshGap": 0.00011255183516274467,
+      "colliderGap": 0,
+      "jointError": 5.551115123125783e-17,
+      "depthError": 7.412148353425074e-08
+    },
+    {
+      "model": "sumo",
+      "facing": 1,
+      "part": "Foot.L",
+      "samples": 12
+    }
+  ]
+}

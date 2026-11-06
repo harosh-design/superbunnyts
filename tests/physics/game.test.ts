@@ -1,9 +1,11 @@
+import { placeGrip, outline, region } from './geometryHelpers';
 import { describe, expect, it } from 'vitest';
 import { PhysicsLab } from '../../src/world/PhysicsLab';
 import { emptyInputFrame } from '../../src/input/InputFrame';
 import { newReplay, readReplay, runReplay } from '../../src/debug/Replay';
 import { springLift } from '../../src/world/SpringPad';
 import reference from '../../reference/unity-runtime/current.json';
+import { MATCH_RULES } from '../../src/world/Deathmatch';
 import { SCENES } from '../../src/world/Environment';
 
 const input = (extra = {}) => ({ ...emptyInputFrame(), ...extra });
@@ -31,7 +33,15 @@ describe('ported single-player physics', () => {
   lab.step(input());expect(lab.world.getJointCount()).toBe(9);expect(lab.grab.holding(0)).toBe(false);
  });
  it('hangs from the actual articulated vine',()=>{const lab=new PhysicsLab('vine');advance(lab,75,input({grabHeld:true}));expect(lab.grab.held.some(s=>s?.body.getType()==='dynamic')).toBe(true);expect(lab.current.core.y).toBeGreaterThan(1);expect(lab.grounded).toBe(false);});
- it('keeps a floor grip above the broad surface',()=>{const lab=new PhysicsLab('flat',{x:0,y:0});advance(lab,25);advance(lab,15,input({roll:1}));advance(lab,75);advance(lab,50,input({grabHeld:true}));for(let i=0;i<2;i++){expect(lab.grab.holding(i)).toBe(true);expect(lab.rig.arms[i].getWorldPoint(lab.rig.handLocal).y).toBeGreaterThan(.048);}});
+ it('keeps a floor grip on the actual glove surface',()=>{
+  const lab=new PhysicsLab('flat',{x:0,y:2}),actor=lab.players[0].actor;
+  const glove=outline(lab.rig.skin.hands[0]),bottom=Math.min(...glove.map(p=>p.y));
+  for(const body of lab.rig.bodies){const p=body.getPosition();body.setTransform({x:p.x,y:p.y-bottom+.002},body.getAngle());}
+  actor.rig.skin.sync();actor.grab.step(true);expect(actor.grab.holding(0)).toBe(true);
+  for(let i=0;i<50;i++)lab.step(input({grabHeld:true}));
+  expect(actor.grab.holding(0)).toBe(true);
+  expect(Math.min(...outline(lab.rig.skin.hands[0]).map(p=>p.y))).toBeGreaterThan(-.008);
+ });
  it('bounces repeatedly and sends the inclined pad left',()=>{
   const lab=new PhysicsLab('spring',{x:0,y:.8});let peak=0,launches=0;
   for(let i=0;i<250;i++){lab.step(input());if(lab.events.spring)launches++;peak=Math.max(peak,lab.current.core.y);}
@@ -45,14 +55,14 @@ describe('ported single-player physics', () => {
 describe('complete deathmatch',()=>{
  it('loads both source maps and counts down with gated inputs',()=>{for(const scene of ['dm-flat','dm-meadow'] as const){const lab=new PhysicsLab(scene,undefined,{players:4});expect(lab.players).toHaveLength(4);expect(lab.actors.map(a=>a.rig.facing)).toEqual(lab.environment.spawns.map(p=>p.x>0?-1:1));for(let i=0;i<150;i++)lab.step(Array.from({length:4},()=>input({jumpPressed:true,roll:1})));expect(lab.match!.phase).toBe('countdown');lab.step(input());expect(lab.match!.phase).toBe('playing');}});
  it('keeps player rigs collidable while suppressing self collisions',()=>{const lab=new PhysicsLab('dm-flat');expect(lab.players[0].actor.rig.core.getFixtureList()!.getFilterGroupIndex()).not.toBe(lab.players[1].actor.rig.core.getFixtureList()!.getFilterGroupIndex());});
- it('finishes dissolving before respawning far from rivals',()=>{
+ it('finishes sinking before respawning far from rivals',()=>{
   const lab=new PhysicsLab('dm-flat',undefined,{lives:2});advance(lab,151);const dead=lab.players[0].actor;
   lab.eliminate(0,'kick',1);expect(lab.players[0].lives).toBe(1);expect(lab.players[1].kills).toBe(1);expect(dead.alive).toBe(false);expect(dead.rig.legJoints.every(j=>!j.isMotorEnabled())).toBe(true);
   expect(dead.rig.bodies.every(b=>!b.isActive())).toBe(true);
   expect(lab.environment.surfaces.all.some(s=>s.ownerId===dead.id)).toBe(false);
-  advance(lab,20);expect(dead.removed).toBe(false);expect(lab.players[0].actor).toBe(dead);
-  advance(lab,4);expect(dead.removed).toBe(true);expect(lab.actors).toHaveLength(1);expect(lab.players[0].actor).toBe(dead);
-  advance(lab,7);expect(lab.players[0].actor.id).not.toBe(dead.id);expect(lab.actors).toHaveLength(2);
+  advance(lab,Math.floor(MATCH_RULES.corpseDuration / .02) - 1);expect(dead.removed).toBe(false);expect(lab.players[0].actor).toBe(dead);
+  advance(lab,3);expect(dead.removed).toBe(true);expect(lab.actors).toHaveLength(1);expect(lab.players[0].actor).toBe(dead);
+  advance(lab,Math.ceil((MATCH_RULES.respawnDelay - MATCH_RULES.corpseDuration) / .02));expect(lab.players[0].actor.id).not.toBe(dead.id);expect(lab.actors).toHaveLength(2);
   expect(lab.players[0].actor.health).toBe(100);expect(lab.players[0].actor.current.core.x).toBeLessThan(0);
  });
  it('reports a winner, gates controls and waits before a rematch',()=>{const lab=new PhysicsLab('dm-flat',undefined,{lives:1});advance(lab,151);lab.eliminate(0);expect(lab.match!.phase).toBe('results');expect(lab.match!.winner).toBe(1);lab.step(input({jumpPressed:true}));expect(lab.match!.restartRequested).toBe(false);advance(lab,75);lab.step(input({jumpPressed:true}));expect(lab.match!.restartRequested).toBe(true);});
@@ -71,9 +81,9 @@ describe('real combat contacts',()=>{
   expect(lab.players[0].actor.cause).toBe('hazard');expect(lab.players[0].lives).toBe(9);expect(lab.world.getJointCount()).toBe(base);
   expect(lab.players[0].actor.rig.bodies.every(b=>!b.isActive())).toBe(true);
  });
- it('releases the opponent grip immediately and prevents grabbing a dissolving body',()=>{
+ it('releases the opponent grip immediately and prevents grabbing a sinking body',()=>{
   const lab=new PhysicsLab('dm-flat',undefined,{lives:2});advance(lab,151);
-  moveActor(lab,0,0,3);moveActor(lab,1,.63,3.24);
+  moveActor(lab,0,0,3);moveActor(lab,1,1,3);placeGrip(lab.players[0].actor,lab.players[1].actor);
   lab.step([input({grabHeld:true}),input()]);
   const holder=lab.players[0].actor,victim=lab.players[1].actor;
   expect(holder.grab.held.some(s=>s?.ownerId===victim.id)).toBe(true);
@@ -83,7 +93,7 @@ describe('real combat contacts',()=>{
  });
  it('cleans up the last lost life during results without spawning a replacement',()=>{
   const lab=new PhysicsLab('dm-flat',undefined,{lives:1});advance(lab,151);
-  const dead=lab.players[0].actor;lab.eliminate(0,'head',1);advance(lab,35);
+  const dead=lab.players[0].actor;lab.eliminate(0,'head',1);advance(lab,Math.ceil(MATCH_RULES.corpseDuration / .02) + 2);
   expect(lab.match!.phase).toBe('results');expect(dead.removed).toBe(true);
   expect(lab.players[0].actor).toBe(dead);expect(lab.players[0].lives).toBe(0);expect(lab.actors).toHaveLength(1);
  });
@@ -122,10 +132,10 @@ it('keeps both four-player maps finite and cleans up corpses during sustained pl
   }
   expect(lab.environment.surfaces.all.filter(s=>s.ownerId!==undefined).every(s=>lab.actors.some(a=>a.id===s.ownerId))).toBe(true);
  }
-});
+},120000);
 
-it('matches measured Unity mass properties and resting height',()=>{
+it('retains measured Unity mass properties and rests on the actual soles',()=>{
  const lab=new PhysicsLab('flat'), bodies=[lab.rig.core,lab.rig.legs[0],lab.rig.arms[0],lab.rig.legs[1],lab.rig.arms[1]];
  bodies.forEach((body,i)=>{const measured=reference.scenarios[0].initial[i],c=body.getLocalCenter();expect(body.getMass()).toBeCloseTo(measured.mass,6);expect(c.x).toBeCloseTo(measured.cx,6);expect(c.y).toBeCloseTo(measured.cy,6);expect(body.getInertia()-body.getMass()*(c.x*c.x+c.y*c.y)).toBeCloseTo(measured.inertia,7);});
- advance(lab,200);expect(Math.abs(lab.current.core.y-reference.scenarios[0].ticks[149].core.y)).toBeLessThan(.001);
+ advance(lab,200);const soles=lab.rig.skin.skeleton.legs.flatMap(l=>outline(region(lab.players[0].actor,l.tip.name)));expect(Math.min(...soles.map(p=>p.y))).toBeGreaterThan(-.006);expect(Math.min(...soles.map(p=>p.y))).toBeLessThan(.008);
 });

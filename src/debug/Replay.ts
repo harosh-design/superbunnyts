@@ -1,3 +1,4 @@
+import { CHARACTER_GEOMETRY_VERSION } from '../character/CharacterSkeleton';
 import { unityMass } from '../config/unityMass';
 import { tuning } from '../config/bunnyTuning';
 import type { InputFrame } from '../input/InputFrame';
@@ -5,7 +6,7 @@ import { PhysicsLab } from '../world/PhysicsLab';
 import { SCENES, type SceneId } from '../world/Environment';
 import { MATCH_RULES, type MatchOptions } from '../world/Deathmatch';
 
-const CONFIG = JSON.stringify({ tuning, rules: MATCH_RULES, mass: unityMass, port: 4 });
+const CONFIG = JSON.stringify({ tuning, rules: MATCH_RULES, mass: unityMass, geometry: CHARACTER_GEOMETRY_VERSION, port: 5 });
 export const MAX_REPLAY_TICKS = 15000;
 export interface Replay { version: 2; scene: SceneId; dt: number; config: string; options: MatchOptions; frames: InputFrame[][] }
 export function newReplay(scene: SceneId, options: MatchOptions = {}): Replay {

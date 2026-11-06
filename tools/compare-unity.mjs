@@ -5,7 +5,7 @@ try {
  const {PhysicsLab}=await server.ssrLoadModule('/src/world/PhysicsLab.ts');
  const {emptyInputFrame}=await server.ssrLoadModule('/src/input/InputFrame.ts');
  const source=JSON.parse(await fs.readFile(new URL('../reference/unity-runtime/current.json',import.meta.url),'utf8'));
- const report={unity:source.unity,dt:source.dt,gravity:source.gravity,scenarios:[],note:'Five controlled scenarios. Port and Unity use different capsule contacts and solver versions; chaotic rolling is reported separately.'};
+ const report={unity:source.unity,dt:source.dt,gravity:source.gravity,scenarios:[],note:'Five controlled scenarios. The port now uses mesh-derived character contours; Unity retains the original primitive rig. This comparison reports trajectory changes, not a target for matching collision geometry.'};
  for(const reference of source.scenarios){
   const lab=new PhysicsLab(reference.name==='lab_idle'?'lab':'flat');
   const jsBodies=[lab.rig.core,lab.rig.legs[0],lab.rig.arms[0],lab.rig.legs[1],lab.rig.arms[1]];
