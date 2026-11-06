@@ -13,10 +13,19 @@ export function rotateWorld(bone: Object3D, rotation: Quaternion): void {
 }
 
 /** Same two-bone construction as BunnyVisual.TwoBone, using world-space directions. */
-export function twoBone(limb: Limb, target: Vector3, bend: Vector3): void {
+export function twoBone(limb: Limb, target: Vector3, bend: Vector3, stretch = false): void {
   const root = limb.upper.getWorldPosition(new Vector3());
-  const mid0 = limb.lower.getWorldPosition(new Vector3());
-  const tip0 = limb.tip.getWorldPosition(new Vector3());
+  let mid0 = limb.lower.getWorldPosition(new Vector3());
+  let tip0 = limb.tip.getWorldPosition(new Vector3());
+  if (stretch) {
+    const length = root.distanceTo(mid0) + mid0.distanceTo(tip0);
+    const factor = root.distanceTo(target) / Math.max(1e-6, length - 0.001);
+    if (factor > 1) {
+      limb.lower.position.multiplyScalar(factor); limb.tip.position.multiplyScalar(factor);
+      limb.upper.updateWorldMatrix(true, true);
+      mid0 = limb.lower.getWorldPosition(new Vector3()); tip0 = limb.tip.getWorldPosition(new Vector3());
+    }
+  }
   const a = root.distanceTo(mid0), b = mid0.distanceTo(tip0);
   const toTarget = target.clone().sub(root);
   const d = Math.max(Math.abs(a - b) + 0.001, Math.min(a + b - 0.001, toTarget.length()));

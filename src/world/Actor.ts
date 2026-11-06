@@ -5,6 +5,7 @@ import { BunnyGrab } from '../bunny/BunnyGrab';
 import type { Vec2 } from '../config/bunnyTuning';
 import type { Environment } from './Environment';
 import type { BunnyPose } from './PhysicsLab';
+import { MATCH_RULES } from './Deathmatch';
 
 export type ModelKind = 'bunny' | 'sumo';
 export type DeathCause = 'hazard' | 'bounds' | 'head' | 'kick';
@@ -17,6 +18,9 @@ export class Actor {
   readonly contacts = { feet: [false, false], hands: [false, false] };
   lastImpact: { speed: number; x: number; y: number } | null = null;
   alive = true;
+  health: number = MATCH_RULES.maxHealth;
+  lastHurtAt = -Infinity;
+  readonly lastHeadHits = new Map<number, number>();
   diedAt = -Infinity;
   removed = false;
   cause: DeathCause | null = null;

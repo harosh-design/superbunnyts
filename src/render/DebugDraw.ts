@@ -13,6 +13,7 @@ export class DebugDraw {
     const line = (a: Vec2Value, b: Vec2Value) => vertices.push(a.x, a.y, 0.6, b.x, b.y, 0.6);
     const cross = (p: Vec2Value, r: number) => { line({ x: p.x - r, y: p.y }, { x: p.x + r, y: p.y }); line({ x: p.x, y: p.y - r }, { x: p.x, y: p.y + r }); };
     for (let body = lab.world.getBodyList(); body; body = body.getNext()) {
+      if (!body.isActive()) continue;
       for (let fixture = body.getFixtureList(); fixture; fixture = fixture.getNext()) {
         const shape = fixture.getShape();
         if (shape instanceof Circle) {
@@ -25,7 +26,10 @@ export class DebugDraw {
       }
       if (body.getType() === 'dynamic') cross(body.getWorldCenter(), 0.035);
     }
-    for (let joint = lab.world.getJointList(); joint; joint = joint.getNext()) { line(joint.getAnchorA(), joint.getAnchorB()); cross(joint.getAnchorA(), 0.025); }
+    for (let joint = lab.world.getJointList(); joint; joint = joint.getNext()) {
+      if (!joint.getBodyA().isActive() || !joint.getBodyB().isActive()) continue;
+      line(joint.getAnchorA(), joint.getAnchorB()); cross(joint.getAnchorA(), 0.025);
+    }
     for (let contact = lab.world.getContactList(); contact; contact = contact.getNext()) {
       if (!contact.isTouching()) continue;
       const manifold = contact.getWorldManifold(null);

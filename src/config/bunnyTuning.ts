@@ -88,7 +88,8 @@ export const tuning = {
     freeTorqueMax: 12
   },
 
-  grab: { radius: 0.09, reachAngle: 60, reachGain: 12, reachTorque: 12, holdFriction: 4 },
+  // Only the solver's small contact tolerance, rather than a remote grab zone.
+  grab: { radius: 0.005, reachAngle: 60, reachGain: 12, reachTorque: 12, holdFriction: 4 },
 
   // §10: восстановление
   recoveryBounds: { minX: -12, maxX: 12, minY: -6, maxY: 16 }

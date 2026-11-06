@@ -100,6 +100,11 @@ select { font: inherit; color: #e6ecf3; border: 1px solid #ffffff30; border-radi
 .player-badge b { color: var(--player-color); font-size: 12px; }
 .player-badge strong { font: 600 18px ui-monospace, monospace; }
 .player-badge span { grid-column: 1 / -1; font-size: 9px; color: #bfcedf; }
+.player-badge .health-row { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 12px; margin-top: 3px; }
+.health-row .health-value { color: #fff; font-variant-numeric: tabular-nums; }
+.health-bar { grid-column: 1 / -1; height: 6px; overflow: hidden; background: #ffffff20; border-radius: 3px; margin-bottom: 3px; }
+.health-bar > div { height: 100%; background: var(--player-color); }
+.player-badge.hurt { border-color: #fff; background: #653545ed; }
 .match-banner { position: absolute; top: 30%; left: 0; right: 0; text-align: center; font-size: clamp(50px, 9vw, 110px); font-weight: 800; text-shadow: 0 4px 20px #10192870; }
 .results { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: auto; width: min(400px, calc(100% - 40px)); text-align: center; background: #1c293af5; border: 1px solid #ffffff30; border-radius: 18px; padding: 30px; }
 .results h2 { font-size: 30px; margin: 15px 0; }

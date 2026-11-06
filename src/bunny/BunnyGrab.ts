@@ -21,17 +21,17 @@ export class BunnyGrab {
       const hand = this.rig.arms[i].getWorldPoint(this.rig.handLocal);
       const hit = this.surfaces.near(hand, tuning.arm.handRadius + tuning.grab.radius, this.rig.id)[0];
       if (!hit) continue;
-      let { x, y } = hit.point;
-      const dx = hand.x - x, dy = hand.y - y, d = Math.hypot(dx, dy);
-      if (!hit.surface.sensor && d > 1e-4) {
-        const away = { x: dx / d, y: dy / d };
-        const thin = !hit.surface.contains({ x: x - away.x * 2.5 * tuning.arm.handRadius, y: y - away.y * 2.5 * tuning.arm.handRadius });
-        x += away.x * tuning.arm.handRadius * (thin ? -1 : 1);
-        y += away.y * tuning.arm.handRadius * (thin ? -1 : 1);
-      } else if (!hit.surface.sensor) { x = hand.x; y = hand.y; }
+      const { x, y } = hit.point;
+      const dx = x - hand.x, dy = y - hand.y, d = Math.hypot(dx, dy);
+      // Join the touching edge of the hand to the surface itself. Both anchors
+      // describe the same contact, including on thin objects and ear sensors.
+      const contact = d > 1e-4 ? {
+        x: hand.x + dx / d * tuning.arm.handRadius,
+        y: hand.y + dy / d * tuning.arm.handRadius
+      } : hand;
       const joint = new RevoluteJoint({
         bodyA: this.rig.arms[i], bodyB: hit.surface.body,
-        localAnchorA: this.rig.handLocal,
+        localAnchorA: this.rig.arms[i].getLocalPoint(contact),
         localAnchorB: hit.surface.body.getLocalPoint({ x, y }),
         collideConnected: false, enableLimit: false, enableMotor: false
       });

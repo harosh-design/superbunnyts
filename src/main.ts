@@ -1,6 +1,6 @@
 import { tuning } from './config/bunnyTuning';
 import { PLAYER_COLORS } from './world/Actor';
-import type { MatchOptions } from './world/Deathmatch';
+import { MATCH_RULES, type MatchOptions } from './world/Deathmatch';
 import { emptyInputFrame } from './input/InputFrame';
 import { KeyboardInput } from './input/KeyboardInput';
 import { SceneRenderer } from './render/SceneRenderer';
@@ -51,7 +51,7 @@ app.innerHTML = `
   </section></div>
   <div class="overlay menu-overlay" id="start-overlay"><section class="pause-card start-card" role="dialog" aria-modal="true" aria-labelledby="start-title">
     <div class="eyebrow">Super Bunny · Browser edition</div><h2 id="start-title">Super Bunny</h2>
-    <p>Сражение на одной клавиатуре. Последний выживший побеждает.</p>
+    <p>Бей соперников в голову: сильнее удар — больше урон. 100 HP на каждую жизнь. Последний выживший побеждает.</p>
     <div class="match-options">
       <label>Арена<select id="match-map"><option value="dm-flat">Flat</option><option value="dm-meadow">Meadow</option></select></label>
       <label>Игроки<select id="player-count"><option>2</option><option>3</option><option>4</option></select></label>
@@ -144,7 +144,10 @@ async function start(): Promise<() => void> {
     const match = lab.match, board = element('#scoreboard'), banner = element('#match-banner'), results = element('#results');
     board.hidden = !match; banner.hidden = !match || match.phase === 'results'; results.hidden = !match || match.phase !== 'results';
     if (!match) return;
-    board.innerHTML = lab.players.map(p => `<div class="player-badge" style="--player-color:${PLAYER_COLORS[p.index]}"><b>P${p.index + 1}</b><strong>×${p.lives}</strong><span>${p.kills} KO${p.respawnAt > 0 && !p.actor.alive ? ' · возрождение' : p.lives === 0 ? ' · выбыл' : ''}</span></div>`).join('');
+    board.innerHTML = lab.players.map(p => {
+      const health = Math.ceil(p.actor.health), hurt = lab.time - p.actor.lastHurtAt < 0.25;
+      return `<div class="player-badge${hurt ? ' hurt' : ''}" style="--player-color:${PLAYER_COLORS[p.index]}"><b>P${p.index + 1}</b><strong title="Осталось жизней">×${p.lives}</strong><div class="health-row"><span>HP</span><span class="health-value">${health}/${MATCH_RULES.maxHealth}</span></div><div class="health-bar" role="progressbar" aria-label="Здоровье P${p.index + 1}" aria-valuemin="0" aria-valuemax="${MATCH_RULES.maxHealth}" aria-valuenow="${health}"><div style="width:${p.actor.health / MATCH_RULES.maxHealth * 100}%"></div></div><span>${p.kills} KO${p.respawnAt > 0 && !p.actor.alive ? ' · возрождение' : p.lives === 0 ? ' · выбыл' : ''}</span></div>`;
+    }).join('');
     const countdown = 3 - lab.time;
     banner.textContent = match.phase === 'countdown' ? String(Math.max(1, Math.ceil(countdown))) : countdown > -0.8 ? 'ВПЕРЁД!' : '';
     if (match.phase === 'results') {

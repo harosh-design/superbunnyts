@@ -1,4 +1,4 @@
-import { Group, Mesh, Object3D, Quaternion, Vector2, Vector3 } from 'three';
+import { Group, Mesh, Object3D, Quaternion, SkinnedMesh, Vector2, Vector3 } from 'three';
 import { clone } from 'three/addons/utils/SkeletonUtils.js';
 import type { ModelKind } from '../world/Actor';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -6,6 +6,7 @@ import { DEG2RAD, tuning } from '../config/bunnyTuning';
 import type { VisualContext, BunnyPose } from '../world/PhysicsLab';
 import { InertialSpring2D } from './InertialSpring2D';
 import { rotateWorld, setWorldRotation, twoBone, type Limb } from './TwoBoneIK';
+import type { Surface } from '../physics/Surfaces';
 
 const Z = new Vector3(0, 0, 1), Y = new Vector3(0, 1, 0);
 const PROFILE = 65 * DEG2RAD;
@@ -20,6 +21,7 @@ export class CharacterVisual {
   readonly root = new Group();
   private readonly bind = new Map<Object3D, Bind>();
   private readonly arms: Limb[] = [];
+  private readonly gripVertices: Vector3[][] = [[], []];
   private readonly legs: Limb[] = [];
   private readonly footInModel: Quaternion[] = [];
   private readonly springs: EarSpring[] = [];
@@ -101,6 +103,7 @@ export class CharacterVisual {
       this.legs[i] = { upper: bone(`Thigh.${side}`), lower: bone(`Shin.${side}`), tip: bone(`Foot.${side}`) };
       if (hasEars) { this.addSpring(bone(`Ear1.${side}`), 160, 9, 9); this.addSpring(bone(`Ear2.${side}`), 110, 6, 12); }
     }
+    this.cacheGripVertices();
     if (names.has('Tail')) this.addSpring(bone('Tail'), 220, 12, 5);
     const modelInverse = model.getWorldQuaternion(new Quaternion()).invert();
     for (const leg of this.legs) this.footInModel.push(modelInverse.clone().multiply(leg.tip.getWorldQuaternion(new Quaternion())));
@@ -197,6 +200,9 @@ export class CharacterVisual {
     }
     for (let i = 0; i < 2; i++) {
       const arm = this.arms[i];
+      // Grip-only reach adjustment must start from authored lengths each frame.
+      arm.lower.position.copy(this.bind.get(arm.lower)!.position);
+      arm.tip.position.copy(this.bind.get(arm.tip)!.position);
       this.restore(arm.upper); this.restore(arm.lower); this.restore(arm.tip);
       const physical = pose.arms[i];
       const handVector = new Vector3(lab.rig.handLocal.x * Math.cos(physical.angle), lab.rig.handLocal.x * Math.sin(physical.angle), 0);
@@ -205,17 +211,68 @@ export class CharacterVisual {
       const hand = new Vector3(physical.x, physical.y, shoulder.z).add(handVector);
       const holding = lab.grab.holding(i);
       const pressing = holding || lab.contacts.hands[i] || lab.environment.surfaces.near(alongside, tuning.arm.handRadius, lab.rig.id).length > 0;
-      this.handClose[i] += ((holding ? 1 : lab.grab.reaching ? -1 : 0) - this.handClose[i]) * blend;
+      this.handClose[i] = holding ? 1 : this.handClose[i] + ((lab.grab.reaching ? -1 : 0) - this.handClose[i]) * blend;
       this.heldFor[i] = holding ? Math.max(0, this.heldFor[i]) + delta : -1;
-      this.grip[i] += ((pressing ? 1 : 0) - this.grip[i]) * blend;
-      twoBone(arm, alongside.lerp(hand, this.grip[i]), up.clone().negate());
-      this.poseHand(i, alpha, lab);
+      this.grip[i] = holding ? 1 : this.grip[i] + ((pressing ? 1 : 0) - this.grip[i]) * blend;
+      const target = alongside.lerp(hand, this.grip[i]);
+      for (let attempt = 0; attempt < 4; attempt++) {
+        if (attempt > 0) {
+          arm.lower.position.copy(this.bind.get(arm.lower)!.position);
+          arm.tip.position.copy(this.bind.get(arm.tip)!.position);
+          this.restore(arm.upper); this.restore(arm.lower); this.restore(arm.tip);
+        }
+        twoBone(arm, target, up.clone().negate(), holding);
+        this.poseHand(i, alpha, lab);
+        if (!holding) break;
+        // Bone origins and glove sizes differ between Bunny and Sumo. Bring the
+        // actual glove surface into contact, rather than leaving a collider gap.
+        const offset = this.gripOffset(i, lab.grab.held[i]!, alpha);
+        if (offset.lengthSq() < 1e-6) break;
+        target.add(offset);
+      }
     }
     for (const s of this.springs) {
       this.restore(s.bone);
       rotateWorld(s.bone, new Quaternion().setFromAxisAngle(Z, (s.previous + (s.angle - s.previous) * alpha) * DEG2RAD));
     }
     this.root.updateWorldMatrix(true, true);
+  }
+
+  private cacheGripVertices(): void {
+    this.root.updateMatrixWorld(true);
+    for (let i = 0; i < 2; i++) {
+      const tip = this.arms[i].tip, vertices: Vector3[] = [];
+      this.model.traverse(node => {
+        if (!(node instanceof SkinnedMesh)) return;
+        const bone = node.skeleton.bones.findIndex(b => b === tip);
+        if (bone < 0) return;
+        const indices = node.geometry.getAttribute('skinIndex'), weights = node.geometry.getAttribute('skinWeight');
+        for (let vertex = 0; vertex < indices.count; vertex++) {
+          let influence = 0;
+          for (let k = 0; k < 4; k++) if (indices.getComponent(vertex, k) === bone) influence += weights.getComponent(vertex, k);
+          if (influence < 0.99) continue;
+          vertices.push(tip.worldToLocal(node.localToWorld(node.getVertexPosition(vertex, new Vector3()))));
+        }
+      });
+      // A small set of actual surface vertices bounds the glove in 26 directions.
+      const samples = new Set<Vector3>();
+      for (let x = -1; x <= 1; x++) for (let y = -1; y <= 1; y++) for (let z = -1; z <= 1; z++) {
+        if ((!x && !y && !z) || !vertices.length) continue;
+        const direction = new Vector3(x, y, z);
+        samples.add(vertices.reduce((best, p) => p.dot(direction) > best.dot(direction) ? p : best));
+      }
+      this.gripVertices[i] = [...samples];
+    }
+  }
+
+  private gripOffset(i: number, surface: Surface, alpha: number): Vector3 {
+    const offset = new Vector3(); let distance = Infinity;
+    for (const vertex of this.gripVertices[i]) {
+      const p = this.arms[i].tip.localToWorld(vertex.clone()), nearest = surface.closestAt(p, alpha);
+      const dx = nearest.x - p.x, dy = nearest.y - p.y, d = dx * dx + dy * dy;
+      if (d < distance) { distance = d; offset.set(dx, dy, 0); }
+    }
+    return offset;
   }
 
   private poseHand(i: number, alpha: number, lab: VisualContext): void {
@@ -227,7 +284,7 @@ export class CharacterVisual {
     if (this.handClose[i] > 0) {
       const palm = new Vector2(along.y * this.facing, -along.x * this.facing);
       const surface = lab.grab.held[i];
-      const nearest = surface?.closest(wrist);
+      const nearest = surface?.closestAt(wrist, alpha);
       const onto = nearest ? new Vector2(nearest.x - wrist.x, nearest.y - wrist.y) : palm;
       if (onto.lengthSq() < 1e-6) onto.copy(palm);
       const signed = Math.atan2(along.x * onto.y - along.y * onto.x, along.x * onto.x + along.y * onto.y);

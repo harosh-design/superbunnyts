@@ -45,11 +45,15 @@ describe('ported single-player physics', () => {
 describe('complete deathmatch',()=>{
  it('loads both source maps and counts down with gated inputs',()=>{for(const scene of ['dm-flat','dm-meadow'] as const){const lab=new PhysicsLab(scene,undefined,{players:4});expect(lab.players).toHaveLength(4);expect(lab.actors.map(a=>a.rig.facing)).toEqual(lab.environment.spawns.map(p=>p.x>0?-1:1));for(let i=0;i<150;i++)lab.step(Array.from({length:4},()=>input({jumpPressed:true,roll:1})));expect(lab.match!.phase).toBe('countdown');lab.step(input());expect(lab.match!.phase).toBe('playing');}});
  it('keeps player rigs collidable while suppressing self collisions',()=>{const lab=new PhysicsLab('dm-flat');expect(lab.players[0].actor.rig.core.getFixtureList()!.getFilterGroupIndex()).not.toBe(lab.players[1].actor.rig.core.getFixtureList()!.getFilterGroupIndex());});
- it('respawns far from rivals, retains a limp corpse, then removes it cleanly',()=>{
+ it('finishes dissolving before respawning far from rivals',()=>{
   const lab=new PhysicsLab('dm-flat',undefined,{lives:2});advance(lab,151);const dead=lab.players[0].actor;
   lab.eliminate(0,'kick',1);expect(lab.players[0].lives).toBe(1);expect(lab.players[1].kills).toBe(1);expect(dead.alive).toBe(false);expect(dead.rig.legJoints.every(j=>!j.isMotorEnabled())).toBe(true);
-  advance(lab,76);expect(lab.players[0].actor.id).not.toBe(dead.id);expect(lab.actors).toHaveLength(3);expect(lab.players[0].actor.current.core.x).toBeLessThan(0);
-  advance(lab,175);expect(dead.removed).toBe(true);expect(lab.actors).toHaveLength(2);
+  expect(dead.rig.bodies.every(b=>!b.isActive())).toBe(true);
+  expect(lab.environment.surfaces.all.some(s=>s.ownerId===dead.id)).toBe(false);
+  advance(lab,20);expect(dead.removed).toBe(false);expect(lab.players[0].actor).toBe(dead);
+  advance(lab,4);expect(dead.removed).toBe(true);expect(lab.actors).toHaveLength(1);expect(lab.players[0].actor).toBe(dead);
+  advance(lab,7);expect(lab.players[0].actor.id).not.toBe(dead.id);expect(lab.actors).toHaveLength(2);
+  expect(lab.players[0].actor.health).toBe(100);expect(lab.players[0].actor.current.core.x).toBeLessThan(0);
  });
  it('reports a winner, gates controls and waits before a rematch',()=>{const lab=new PhysicsLab('dm-flat',undefined,{lives:1});advance(lab,151);lab.eliminate(0);expect(lab.match!.phase).toBe('results');expect(lab.match!.winner).toBe(1);lab.step(input({jumpPressed:true}));expect(lab.match!.restartRequested).toBe(false);advance(lab,75);lab.step(input({jumpPressed:true}));expect(lab.match!.restartRequested).toBe(true);});
  it('uses exported Meadow hazards and two spring assemblies',()=>{const lab=new PhysicsLab('dm-meadow');expect(lab.environment.springs).toHaveLength(2);let hazards=0;for(let b=lab.world.getBodyList();b;b=b.getNext())if(b.getUserData().hazard)hazards++;expect(hazards).toBe(3);expect(Object.keys(SCENES)).toContain('dm-meadow');});
@@ -61,17 +65,34 @@ function moveActor(lab: PhysicsLab, player: number, x: number, y: number, angle 
 }
 
 describe('real combat contacts',()=>{
- it('kills and pins a body on Meadow spikes',()=>{
+ it('kills on Meadow spikes without leaving a collidable corpse',()=>{
   const lab=new PhysicsLab('dm-meadow');const base=lab.world.getJointCount();moveActor(lab,0,0,-3.1);
   for(let i=0;i<4&&lab.players[0].actor.alive;i++)lab.step(input());
-  expect(lab.players[0].actor.cause).toBe('hazard');expect(lab.players[0].lives).toBe(9);expect(lab.world.getJointCount()).toBeGreaterThan(base);
+  expect(lab.players[0].actor.cause).toBe('hazard');expect(lab.players[0].lives).toBe(9);expect(lab.world.getJointCount()).toBe(base);
+  expect(lab.players[0].actor.rig.bodies.every(b=>!b.isActive())).toBe(true);
  });
- it('kills on a sufficiently fast head-first terrain landing',()=>{
-  const lab=new PhysicsLab('dm-flat');moveActor(lab,0,-2,3,Math.PI);
+ it('releases the opponent grip immediately and prevents grabbing a dissolving body',()=>{
+  const lab=new PhysicsLab('dm-flat',undefined,{lives:2});advance(lab,151);
+  moveActor(lab,0,0,3);moveActor(lab,1,.63,3.24);
+  lab.step([input({grabHeld:true}),input()]);
+  const holder=lab.players[0].actor,victim=lab.players[1].actor;
+  expect(holder.grab.held.some(s=>s?.ownerId===victim.id)).toBe(true);
+  lab.eliminate(1,'head',0);
+  expect(holder.grab.held.every(s=>s===null)).toBe(true);
+  advance(lab,5,input({grabHeld:true}));expect(holder.grab.held.every(s=>s===null)).toBe(true);
+ });
+ it('cleans up the last lost life during results without spawning a replacement',()=>{
+  const lab=new PhysicsLab('dm-flat',undefined,{lives:1});advance(lab,151);
+  const dead=lab.players[0].actor;lab.eliminate(0,'head',1);advance(lab,35);
+  expect(lab.match!.phase).toBe('results');expect(dead.removed).toBe(true);
+  expect(lab.players[0].actor).toBe(dead);expect(lab.players[0].lives).toBe(0);expect(lab.actors).toHaveLength(1);
+ });
+ it('keeps health on a fast head-first terrain landing',()=>{
+  const lab=new PhysicsLab('dm-flat');advance(lab,151);moveActor(lab,0,-2,3,Math.PI);
   for(let i=0;i<100&&lab.players[0].actor.alive;i++)lab.step(input());
-  expect(lab.players[0].actor.cause).toBe('head');expect(lab.players[0].lives).toBe(9);
+  expect(lab.players[0].actor.alive).toBe(true);expect(lab.players[0].actor.health).toBe(100);expect(lab.players[0].lives).toBe(10);
  });
- it('credits a jump from an opponent head as a kick kill',()=>{
+ it('damages a head push-off without an automatic kick kill',()=>{
   const lab=new PhysicsLab('dm-flat');advance(lab,160);
   const victim=lab.players[1].actor, p=victim.rig.core.getPosition();
   // The sole is 0.39 m below the core; place it just above the opponent's head.
@@ -79,13 +100,14 @@ describe('real combat contacts',()=>{
   moveActor(lab,0,head.x-.1,head.y+.155+.02+.39);
   advance(lab,15);expect(lab.players[0].actor.motor.grounded(lab.time)).toBe(true);
   lab.step([input({jumpPressed:true}),input()]);advance(lab,8);
-  expect(victim.cause).toBe('kick');expect(lab.players[0].kills).toBe(1);expect(lab.players[0].actor.alive).toBe(true);
+  expect(victim.health).toBeGreaterThan(0);expect(victim.health).toBeLessThan(100);expect(victim.alive).toBe(true);
+  expect(lab.players[1].lives).toBe(10);expect(lab.players[0].kills).toBe(0);expect(lab.players[0].actor.alive).toBe(true);
  });
  it('replays multiplayer input with matching lives, respawns and body poses',()=>{
   const replay=newReplay('dm-flat',{players:2,lives:2});
   for(let i=0;i<650;i++)replay.frames.push([input({roll:i>155?1:0,jumpPressed:i===170}),input()]);
   const a=runReplay(replay),b=runReplay(readReplay(JSON.parse(JSON.stringify(replay))));
-  expect(a.players.map(p=>[p.lives,p.kills,p.actor.current])).toEqual(b.players.map(p=>[p.lives,p.kills,p.actor.current]));
+  expect(a.players.map(p=>[p.lives,p.kills,p.actor.health,p.actor.current])).toEqual(b.players.map(p=>[p.lives,p.kills,p.actor.health,p.actor.current]));
   expect(a.world.getBodyCount()).toBe(b.world.getBodyCount());
  });
 });

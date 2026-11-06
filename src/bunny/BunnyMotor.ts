@@ -14,7 +14,6 @@ export class BunnyMotor {
 
   jumpedThisStep = false;
   onKick: ((bodies: Set<Body>, heads: Set<Body>, up: { x: number; y: number }) => void) | null = null;
-  kickActive(now: number): boolean { return now - this.lastJump <= 0.25; }
   goLimp(): void {
     this.rig.legJoints.forEach(j => j.enableMotor(false));
     this.rig.armJoints.forEach(j => j.enableMotor(false));

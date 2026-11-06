@@ -5,7 +5,7 @@ import { PhysicsLab } from '../world/PhysicsLab';
 import { SCENES, type SceneId } from '../world/Environment';
 import { MATCH_RULES, type MatchOptions } from '../world/Deathmatch';
 
-const CONFIG = JSON.stringify({ tuning, rules: MATCH_RULES, mass: unityMass, port: 3 });
+const CONFIG = JSON.stringify({ tuning, rules: MATCH_RULES, mass: unityMass, port: 4 });
 export const MAX_REPLAY_TICKS = 15000;
 export interface Replay { version: 2; scene: SceneId; dt: number; config: string; options: MatchOptions; frames: InputFrame[][] }
 export function newReplay(scene: SceneId, options: MatchOptions = {}): Replay {

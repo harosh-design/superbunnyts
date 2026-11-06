@@ -57,9 +57,9 @@ export class GameAudio {
     for (let i = 0; i < lab.events.jumps; i++) this.play('jump', 0.7, 0.08);
     for (let i = 0; i < lab.events.grabbed; i++) this.play('grab', 0.6, 0.1);
     if (lab.events.spring) this.play('spring_boing', 0.8, 0.06);
+    for (const hit of lab.events.hits) this.play('kick', Math.min(1, 0.3 + hit.damage / 100), 0.05);
     for (const cause of lab.events.deaths) {
       if (cause === 'hazard') this.play('spike_stab', 1, 0.05);
-      if (cause === 'kick') this.play('kick', 1, 0.05);
       this.play('death_splat', 0.9, 0.05);
     }
     for (let i = 0; i < lab.events.respawned; i++) this.play('respawn_poof', 0.8, 0.05);

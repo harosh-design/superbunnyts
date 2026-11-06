@@ -5,6 +5,8 @@ import { WorldVisual, disposeObjects, type Scenery } from './WorldVisual';
 import { LabCamera } from './LabCamera';
 import { PLAYER_COLORS } from '../world/Actor';
 import { DebugDraw } from './DebugDraw';
+import { DeathDissolve } from './DeathDissolve';
+import { tuning } from '../config/bunnyTuning';
 
 export class SceneRenderer {
   readonly canvas: HTMLCanvasElement;
@@ -12,6 +14,7 @@ export class SceneRenderer {
   private readonly scene = new THREE.Scene();
   private readonly camera = new THREE.PerspectiveCamera(30, 1, 0.1, 300);
   private readonly characters = new Map<number, CharacterVisual>();
+  private readonly dissolves = new Map<number, DeathDissolve>();
   private world!: WorldVisual;
   private scenery!: Record<string, Scenery>;
   private sky!: THREE.Texture;
@@ -54,20 +57,23 @@ export class SceneRenderer {
   }
 
   resetCharacter(lab: PhysicsLab): void {
+    this.dissolves.forEach(effect => effect.dispose()); this.dissolves.clear();
     if (this.world) { this.scene.remove(this.world.root); disposeObjects(this.world.root); }
     this.characters.forEach(c => c.dispose()); this.characters.clear();
     this.world = new WorldVisual(lab, this.scenery[lab.scene.startsWith('dm-') ? lab.scene : 'physics-lab'], this.sky); this.scene.add(this.world.root);
     this.syncActors(lab);
   }
   private syncActors(lab: PhysicsLab): void {
-    for (const [id, visual] of this.characters) if (!lab.actors.some(a => a.id === id)) { visual.dispose(); this.characters.delete(id); }
+    for (const [id, visual] of this.characters) if (!lab.actors.some(a => a.id === id)) {
+      visual.dispose(); this.characters.delete(id); this.dissolves.get(id)?.dispose(); this.dissolves.delete(id);
+    }
     for (const actor of lab.actors) if (!this.characters.has(actor.id)) {
       const color = lab.match || lab.options.menu ? PLAYER_COLORS[actor.player] : undefined;
       const visual = CharacterVisual.create(actor.model, actor.rig.facing, color);
       this.scene.add(visual.root); visual.reset(actor); this.characters.set(actor.id, visual);
     }
   }
-  fixedUpdate(lab: PhysicsLab): void { this.syncActors(lab); for (const actor of lab.actors) this.characters.get(actor.id)!.fixedUpdate(actor); }
+  fixedUpdate(lab: PhysicsLab): void { this.syncActors(lab); for (const actor of lab.actors) if (actor.alive) this.characters.get(actor.id)!.fixedUpdate(actor); }
 
   render(lab: PhysicsLab, alpha: number, delta: number, snap = false, paused = false): void {
     const { previous, current } = lab;
@@ -79,8 +85,18 @@ export class SceneRenderer {
     };
     this.syncActors(lab);
     for (const actor of lab.actors) {
+      const visual = this.characters.get(actor.id)!;
+      if (!actor.alive) {
+        if (!this.dissolves.has(actor.id)) {
+          visual.pose(actor.current, 1, 0, actor);
+          const effect = new DeathDissolve(visual.root); this.scene.add(effect.root); this.dissolves.set(actor.id, effect);
+          visual.root.visible = false;
+        }
+        this.dissolves.get(actor.id)!.update(Math.max(0, lab.time - actor.diedAt - (1 - alpha) * tuning.dt));
+        continue;
+      }
       const p = actor.previous, c = actor.current;
-      this.characters.get(actor.id)!.pose({ core: interpolate(p.core, c.core, alpha), legs: c.legs.map((b, i) => interpolate(p.legs[i], b, alpha)), arms: c.arms.map((b, i) => interpolate(p.arms[i], b, alpha)), objects: [] }, alpha, paused ? 0 : delta, actor);
+      visual.pose({ core: interpolate(p.core, c.core, alpha), legs: c.legs.map((b, i) => interpolate(p.legs[i], b, alpha)), arms: c.arms.map((b, i) => interpolate(p.arms[i], b, alpha)), objects: [] }, alpha, paused ? 0 : delta, actor);
     }
     this.world.update(pose.objects); this.debug.update(lab);
     this.framing.update(this.camera, lab, Math.min(delta, 0.16), snap);
@@ -89,6 +105,7 @@ export class SceneRenderer {
 
   dispose(): void {
     this.resizeObserver.disconnect();
+    this.dissolves.forEach(effect => effect.dispose()); this.dissolves.clear();
     const textures = new Set<THREE.Texture>();
     this.scene.traverse(node => {
       if (node instanceof THREE.Mesh) for (const material of Array.isArray(node.material) ? node.material : [node.material]) {

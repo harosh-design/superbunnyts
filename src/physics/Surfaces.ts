@@ -9,12 +9,31 @@ export type SurfaceShape = ({ kind: 'box'; width: number; height: number }
 
 export class Surface {
   readonly fixtures: Fixture[] = [];
-  constructor(readonly id: number, readonly body: Body, readonly shape: SurfaceShape, readonly ownerId?: number, readonly sensor = false) {}
+  private previousPosition: Vec2;
+  private previousAngle: number;
+  constructor(readonly id: number, readonly body: Body, readonly shape: SurfaceShape, readonly ownerId?: number, readonly sensor = false) {
+    this.previousPosition = { ...body.getPosition() }; this.previousAngle = body.getAngle();
+  }
+
+  capturePrevious(): void {
+    this.previousPosition = { ...this.body.getPosition() }; this.previousAngle = this.body.getAngle();
+  }
+
+  /** Match the interpolated render pose without changing the physics body. */
+  closestAt(point: Vec2, alpha: number): Vec2 {
+    if (alpha === 1) return this.closest(point);
+    const current = this.body.getPosition(), angle = this.previousAngle + (this.body.getAngle() - this.previousAngle) * alpha;
+    const x = this.previousPosition.x + (current.x - this.previousPosition.x) * alpha;
+    const y = this.previousPosition.y + (current.y - this.previousPosition.y) * alpha;
+    const c = Math.cos(angle), s = Math.sin(angle), dx = point.x - x, dy = point.y - y;
+    const physical = this.body.getWorldPoint({ x: dx * c + dy * s, y: -dx * s + dy * c });
+    const nearest = this.body.getLocalPoint(this.closest(physical));
+    return { x: x + nearest.x * c - nearest.y * s, y: y + nearest.x * s + nearest.y * c };
+  }
 
   closest(worldPoint: Vec2): Vec2 {
     const local = this.body.getLocalPoint(worldPoint), s = this.shape, offset = s.center ?? { x: 0, y: 0 };
     const p = { x: local.x - offset.x, y: local.y - offset.y };
-    if (this.sensor) return this.body.getWorldPoint(offset);
     let nearest: Vec2;
     if (s.kind === 'box') {
       nearest = { x: Math.max(-s.width / 2, Math.min(s.width / 2, p.x)), y: Math.max(-s.height / 2, Math.min(s.height / 2, p.y)) };
@@ -41,6 +60,8 @@ export class Surfaces {
   private readonly byFixture = new Map<Fixture, Surface>();
   private nextId = 0;
   constructor(private readonly world: World) {}
+
+  capturePrevious(): void { this.all.forEach(surface => surface.capturePrevious()); }
 
   add(body: Body, shape: SurfaceShape, friction = 0.4, prop = false): Surface {
     const surface = new Surface(++this.nextId, body, shape);
@@ -80,6 +101,6 @@ export class Surfaces {
     return [...candidates].map(surface => {
       const nearest = surface.closest(point);
       return { surface, point: nearest, distance: (nearest.x - point.x) ** 2 + (nearest.y - point.y) ** 2 };
-    }).filter(hit => hit.distance <= (radius + (hit.surface.sensor && hit.surface.shape.kind === 'circle' ? hit.surface.shape.radius : 0)) ** 2).sort((a, b) => a.distance - b.distance || a.surface.id - b.surface.id);
+    }).filter(hit => hit.distance <= radius ** 2).sort((a, b) => a.distance - b.distance || a.surface.id - b.surface.id);
   }
 }

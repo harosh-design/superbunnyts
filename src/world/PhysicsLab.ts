@@ -1,28 +1,31 @@
-import { World, WeldJoint, type Body, type Contact, type Fixture } from 'planck';
+import { World, type Body, type Contact, type ContactImpulse, type Fixture } from 'planck';
 import { tuning, type Vec2 } from '../config/bunnyTuning';
 import { emptyInputFrame, type InputFrame } from '../input/InputFrame';
 import type { BodyUserData } from '../physics/PartKind';
 import { Environment, type SceneId } from './Environment';
 import { stepSpring } from './SpringPad';
 import { Actor, type DeathCause } from './Actor';
-import { Deathmatch, MATCH_RULES, type MatchOptions, type PlayerSlot } from './Deathmatch';
+import { Deathmatch, headImpactDamage, MATCH_RULES, type MatchOptions, type PlayerSlot } from './Deathmatch';
 
 export interface Pose { x: number; y: number; angle: number }
 export interface BunnyPose { core: Pose; legs: Pose[]; arms: Pose[]; objects: Pose[] }
 export type VisualContext = Pick<Actor, 'rig' | 'grab' | 'contacts' | 'lastImpact' | 'current' | 'environment' | 'alive'>;
-interface PendingDeath { cause: DeathCause; killer?: Actor; body?: Body; hazard?: Body }
+interface PendingDeath { cause: DeathCause; killer?: Actor }
+interface HeadHit { victim: Actor; attacker: Actor; damage: number; cause: 'head' | 'kick' }
 export class PhysicsLab {
   readonly world = new World(tuning.gravity);
   readonly environment: Environment;
   readonly actors: Actor[] = [];
   readonly players: PlayerSlot[] = [];
   readonly match: Deathmatch | null;
-  readonly events = { jumped: false, jumps: 0, grabbed: 0, spring: false, deaths: [] as DeathCause[], respawned: 0, countdown: null as number | null, won: false };
+  readonly events = { jumped: false, jumps: 0, grabbed: 0, spring: false, deaths: [] as DeathCause[], hits: [] as HeadHit[], respawned: 0, countdown: null as number | null, won: false };
   ticks = 0;
   current: BunnyPose;
   previous: BunnyPose;
   private nextActor = 0;
   private readonly pending = new Map<Actor, PendingDeath>();
+  private readonly headHits = new Map<string, HeadHit>();
+  private readonly contactSpeeds = new Map<Contact, number>();
   private touching = new Set<string>();
   private fixtureIds = new WeakMap<Fixture, number>();
   private nextFixture = 0;
@@ -39,6 +42,7 @@ export class PhysicsLab {
     this.match = competitive ? new Deathmatch(this.players, options) : null;
     this.current = this.previous = this.capture();
     this.world.on('pre-solve', contact => this.beforeContact(contact));
+    this.world.on('post-solve', (contact, impulse) => this.afterContact(contact, impulse));
   }
   get rig() { return this.players[0].actor.rig; }
   get motor() { return this.players[0].actor.motor; }
@@ -52,12 +56,14 @@ export class PhysicsLab {
   step(controls: InputFrame | InputFrame[]): 'bounds' | 'invalid' | null {
     const inputs = Array.isArray(controls) ? controls : [controls];
     this.events.jumped = this.events.spring = this.events.won = false; this.events.jumps = this.events.grabbed = this.events.respawned = 0;
-    this.events.deaths.length = 0; this.events.countdown = null;
+    this.events.deaths.length = 0; this.events.hits.length = 0; this.events.countdown = null;
+    this.headHits.clear(); this.contactSpeeds.clear();
     this.updateMatch(inputs);
     this.previous = this.current;
     for (const actor of this.actors) actor.previous = actor.current;
+    this.environment.surfaces.capturePrevious();
     for (const spring of this.environment.springs) {
-      if (stepSpring(this.environment, this.actors.map(a => a.rig), this.time, spring)) this.events.spring = true;
+      if (stepSpring(this.environment, this.actors.filter(a => a.alive).map(a => a.rig), this.time, spring)) this.events.spring = true;
     }
     for (const actor of this.actors) {
       actor.lastImpact = null;
@@ -78,16 +84,13 @@ export class PhysicsLab {
         const data = fixture.getBody().getUserData() as BodyUserData;
         const actor = this.actorFor(fixture.getBody()); if (!actor) continue;
         const role = (fixture.getUserData() as { role?: string })?.role;
-        if ((other.getBody().getUserData() as BodyUserData).hazard && role !== 'ear') this.queueKill(actor, { cause: 'hazard', body: fixture.getBody(), hazard: other.getBody() });
+        if ((other.getBody().getUserData() as BodyUserData).hazard && role !== 'ear') this.queueKill(actor, { cause: 'hazard' });
         if (fixture.isSensor() || other.isSensor()) continue;
         const i = data.part === 'arm-0' || data.part === 'leg-0' ? 0 : 1;
         const hand = data.part?.startsWith('arm');
         if (!hand || !actor.grab.holding(i)) actor.motor.contact(this.time, !!data.part?.startsWith('leg'));
         if (data.part?.startsWith('leg')) {
           actor.contacts.feet[i] = true;
-          const victim = this.actorFor(other.getBody());
-          if (victim && victim !== actor && actor.alive && actor.motor.kickActive(this.time)
-            && (other.getUserData() as { role?: string })?.role === 'head') this.queueKill(victim, { cause: 'kick', killer: actor });
         }
         if (hand) actor.contacts.hands[i] = true;
       }
@@ -101,7 +104,7 @@ export class PhysicsLab {
       }
       actor.current = actor.capture();
     }
-    this.applyDeaths();
+    this.applyHeadHits(); this.applyDeaths();
     this.current = this.capture();
     for (let b = this.world.getBodyList(); b; b = b.getNext()) {
       const p = b.getPosition(), v = b.getLinearVelocity();
@@ -121,7 +124,12 @@ export class PhysicsLab {
         const add = tuning.jump.pushSpeed - Math.min(0, along);
         target.setLinearVelocity({ x: v.x - up.x * add, y: v.y - up.y * add });
       }
-      heads.forEach(body => { const victim = this.actorFor(body); if (victim && victim !== actor) this.queueKill(victim, { cause: 'kick', killer: actor }); });
+      // Pushing off an already touching head produces no new collision. Account
+      // for the foot's delivered impulse once, through the same damage rules.
+      heads.forEach(body => {
+        const victim = this.actorFor(body);
+        if (victim) this.queueHeadHit(victim, actor, tuning.jump.pushSpeed, tuning.leg.mass * tuning.jump.pushSpeed, 'kick');
+      });
     };
     this.actors.push(actor); return actor;
   }
@@ -134,18 +142,57 @@ export class PhysicsLab {
     const a = id(c.getFixtureA()), b = id(c.getFixtureB()); return a < b ? `${a}:${b}` : `${b}:${a}`;
   }
   private beforeContact(contact: Contact): void {
-    if (this.touching.has(this.contactKey(contact))) return;
     const manifold = contact.getWorldManifold(null); if (!manifold?.pointCount) return;
     const a = contact.getFixtureA(), b = contact.getFixtureB(), point = manifold.points[0];
+    // Combat includes rotational speed at the actual contact. Keep the original
+    // linear-speed calculation below for the arm relaxation/visual response.
+    let closing = 0;
+    for (let i = 0; i < manifold.pointCount; i++) {
+      const va = a.getBody().getLinearVelocityFromWorldPoint(manifold.points[i]);
+      const vb = b.getBody().getLinearVelocityFromWorldPoint(manifold.points[i]);
+      closing = Math.max(closing, (va.x - vb.x) * manifold.normal.x + (va.y - vb.y) * manifold.normal.y);
+    }
+    this.contactSpeeds.set(contact, Math.max(this.contactSpeeds.get(contact) ?? 0, closing));
+    if (this.touching.has(this.contactKey(contact))) return;
     // BunnyRig uses Collision2D.relativeVelocity, the bodies' relative linear
     // velocity. Adding angular point velocity would change the relaxation threshold.
     const va = a.getBody().getLinearVelocity(), vb = b.getBody().getLinearVelocity();
     const speed = Math.abs((vb.x - va.x) * manifold.normal.x + (vb.y - va.y) * manifold.normal.y);
-    for (const [fixture, other] of [[a, b], [b, a]]) {
+    for (const fixture of [a, b]) {
       const actor = this.actorFor(fixture.getBody()); if (!actor) continue;
       if (!actor.lastImpact || speed > actor.lastImpact.speed) actor.lastImpact = { speed, x: point.x, y: point.y };
-      if (this.match && (fixture.getUserData() as { role?: string })?.role === 'head'
-        && other.getFilterCategoryBits() === 2 && speed >= MATCH_RULES.headImpactSpeed) this.queueKill(actor, { cause: 'head' });
+    }
+  }
+  private afterContact(contact: Contact, impulse: ContactImpulse): void {
+    const speed = this.contactSpeeds.get(contact) ?? 0;
+    if (speed <= MATCH_RULES.minHeadImpactSpeed) return;
+    const a = contact.getFixtureA(), b = contact.getFixtureB();
+    if (a.isSensor() || b.isSensor()) return;
+    const strength = impulse.normalImpulses.reduce((sum, value) => sum + Math.max(0, value), 0);
+    for (const [head, other] of [[a, b], [b, a]]) {
+      if ((head.getUserData() as { role?: string })?.role !== 'head') continue;
+      const victim = this.actorFor(head.getBody()), attacker = this.actorFor(other.getBody());
+      if (victim && attacker) this.queueHeadHit(victim, attacker, speed, strength,
+        (other.getBody().getUserData() as BodyUserData).part?.startsWith('leg') ? 'kick' : 'head');
+    }
+  }
+  private queueHeadHit(victim: Actor, attacker: Actor, speed: number, impulse: number, cause: HeadHit['cause']): void {
+    if (this.match?.phase !== 'playing' || victim === attacker || !victim.alive || !attacker.alive) return;
+    if (this.time - (victim.lastHeadHits.get(attacker.id) ?? -Infinity) < MATCH_RULES.headHitCooldown) return;
+    const damage = headImpactDamage(speed, impulse);
+    if (damage <= 0) return;
+    // Several fixtures / both feet / solver substeps still describe one blow.
+    const key = `${victim.id}:${attacker.id}`, previous = this.headHits.get(key);
+    if (!previous || damage > previous.damage) this.headHits.set(key, { victim, attacker, damage, cause });
+  }
+  private applyHeadHits(): void {
+    for (const hit of this.headHits.values()) {
+      const { victim, attacker, damage, cause } = hit;
+      if (!victim.alive || this.pending.has(victim)) continue;
+      victim.health = Math.max(0, victim.health - damage);
+      victim.lastHurtAt = this.time; victim.lastHeadHits.set(attacker.id, this.time);
+      this.events.hits.push(hit);
+      if (victim.health === 0) this.queueKill(victim, { cause, killer: attacker });
     }
   }
   private queueKill(actor: Actor, death: PendingDeath): void {
@@ -158,9 +205,11 @@ export class PhysicsLab {
   }
   private applyDeaths(): void {
     for (const [actor, death] of this.pending) {
-      actor.alive = false; actor.diedAt = this.time; actor.cause = death.cause;
+      actor.alive = false; actor.health = 0; actor.diedAt = this.time; actor.cause = death.cause;
       actor.grab.releaseAll(); actor.motor.goLimp();
-      if (death.body && death.hazard) this.world.createJoint(new WeldJoint({ collideConnected: false }, death.body, death.hazard, death.body.getPosition()));
+      for (const other of this.actors) for (let i = 0; i < 2; i++) if (other.grab.held[i]?.ownerId === actor.id) other.grab.release(i);
+      this.environment.surfaces.removeOwner(actor.id);
+      actor.rig.bodies.forEach(body => body.setActive(false));
       const player = this.players[actor.player]; player.lives = Math.max(0, player.lives - 1);
       if (death.killer && death.killer !== actor) this.players[death.killer.player].kills++;
       if (player.lives > 0 && this.match?.phase !== 'results') player.respawnAt = this.time + MATCH_RULES.respawnDelay;
@@ -174,12 +223,15 @@ export class PhysicsLab {
   }
   private updateMatch(inputs: InputFrame[]): void {
     const match = this.match; if (!match) return;
+    // Always finish removing the old model before allowing a replacement,
+    // including when a step crosses both deadlines or the match has ended.
+    for (const actor of [...this.actors]) if (!actor.alive && this.time - actor.diedAt >= MATCH_RULES.deathDissolveDuration) this.removeActor(actor);
     if (match.phase === 'countdown') {
       const left = Math.max(0, Math.ceil(MATCH_RULES.countdown - this.time));
       if (left !== match.lastCountdown) { match.lastCountdown = left; this.events.countdown = left; }
       if (this.time >= MATCH_RULES.countdown) match.phase = 'playing';
     } else if (match.phase === 'playing') {
-      for (const player of this.players) if (player.respawnAt > 0 && this.time >= player.respawnAt) {
+      for (const player of this.players) if (player.respawnAt > 0 && this.time >= player.respawnAt && player.actor.removed) {
         player.respawnAt = -1;
         const rivals = this.players.filter(p => p !== player && p.actor.alive).map(p => p.actor.rig.core.getPosition());
         const spawns = [...this.environment.spawns];
@@ -189,7 +241,6 @@ export class PhysicsLab {
         player.actor = this.spawn(player.index, spawn, spawn.x <= 0 ? 1 : -1); this.events.respawned++;
       }
     } else if (this.time - match.resultsSince >= MATCH_RULES.resultsLockout && inputs.some(i => i.jumpPressed)) match.restartRequested = true;
-    for (const actor of [...this.actors]) if (!actor.alive && this.time - actor.diedAt >= MATCH_RULES.corpseLifetime) this.removeActor(actor);
   }
   private removeActor(actor: Actor): void {
     for (const other of this.actors) for (let i = 0; i < 2; i++) if (other.grab.held[i]?.ownerId === actor.id) other.grab.release(i);
