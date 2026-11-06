@@ -111,6 +111,19 @@ npm run compare:unity
 `npx playwright install chromium`. Для проверки production-сервера можно задать
 `BUNNY_TEST_URL=http://127.0.0.1:4173 npm run test:browser`.
 
+## GitHub Pages
+
+Workflow `.github/workflows/deploy-pages.yml` собирает игру и публикует `dist/`
+при push в `main`, а также поддерживает ручной запуск через `workflow_dispatch`.
+
+1. Отправить workflow в основную ветку репозитория.
+2. В **Settings → Pages → Build and deployment → Source** выбрать **GitHub Actions**.
+3. Для ручной публикации открыть **Actions → Deploy to GitHub Pages → Run workflow**,
+   выбрать `main` и нажать **Run workflow**.
+
+Базовый путь сборки определяется настройками Pages автоматически. Ссылка на сайт
+появится в environment `github-pages` после успешного выполнения workflow.
+
 ## Повторный экспорт исходников
 
 ```sh
